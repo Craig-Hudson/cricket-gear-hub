@@ -1,110 +1,503 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Readers Realm
 
-Welcome USER_NAME,
+------------
+[Link to live site here](https://readers-realm-40212841c1a0.herokuapp.com/  "Link to live site here")
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+![Am I responsive image](./documentation/readme/am-i-responsive-m3.png)
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **September 1, 2021**
+## Table of Contents
 
-## Gitpod Reminders
+- [Readers Realm](#readers-realm)
+  - [Table of Contents](#table-of-contents)
+  - [Introduction](#introduction)
+  - [User Experience (UX)](#user-experience-ux)
+    - [User Stories (US)](#user-stories-us)
+    - [Design](#design)
+      - [typography](#typography)
+      - [Structure](#structure)
+      - [Imagery](#imagery)
+      - [Wireframes](#wireframes)
+    - [Accessability](#accessability)
+    - [Database schema](#database-schema)
+      - [Final data schema](#final-data-schema)
+    - [CRUD](#crud)
+      - [Step 1 Create](#step-1-create)
+      - [Step 2 Read](#step-2-read)
+      - [Step 3 Update](#step-3-update)
+      - [Step 4 Delete](#step-4-delete)
+  - [Features](#features)
+  - [Technologies Used](#technologies-used)
+    - [Languages Used](#languages-used)
+    - [Frameworks, Libraries \& Programs Used](#frameworks-libraries--programs-used)
+  - [Testing](#testing)
+    - [Bugs](#bugs)
+  - [Deployment \& Local Development](#deployment--local-development)
+    - [Deployment](#deployment)
+    - [Local Development](#local-development)
+      - [How to Fork](#how-to-fork)
+      - [How to Clone](#how-to-clone)
+  - [Credits](#credits)
+    - [Images used](#images-used)
+    - [Code Used](#code-used)
+    - [Content](#content)
+    - [media](#media)
+    - [Acknowledgments](#acknowledgments)
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+## Introduction
 
-`python3 -m http.server`
+I have created a simple online book review web app, it will allow users to be able to register to the website, so they can utilize everything the website has to offer. Users that are'nt registered will still be able to view all the books on show, and be able to view reviews that may have been left by other users.
+If a user want's to be able to add a book to display on the website they must be registered and logged in, and if users want to leave reviews on any books on the website, they must also be registered and logged in. Registered users will also have their own profile page, which will allow them to view all the reviews and books they have added, users will also be able to edit and delete the reviews and books they've added.
 
-A blue button should appear to click: _Make Public_,
+## User Experience (UX)
 
-Another blue button should appear to click: _Open Browser_.
+### User Stories (US)
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+- **First time visitor goals**
+    1. As a first time visitor I want to be able to easily browse products.
+    2. As a first time visitor I want to be able checkout being only a guest.
+    3. As a first time visitor I want a website to visually attractive and provide good user experience.
+    4. As a first time visitor I want to view individual products.
+    5. As a first time visitor I want to be able to search for products manually, rather than scrolling through the website.
 
-A blue button should appear to click: _Make Public_,
+  - **Returning Visitor goals**
+    1. As a returning Visitor I want to be able to create an account.
+    2. As a returning Visitor I want a profile section on where I can view previous orders.
+    3. As a returning Visitor I want to be able to add/edit my current address.
+    4. As a returning visitor I want to be able to reset my password Incase I forget it.
+   
+  - **Frequent visitor goals**
+  
 
-Another blue button should appear to click: _Open Browser_.
+### Design
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+#### typography
 
-To log into the Heroku toolbelt CLI:
+#### Structure
+  
+#### Imagery
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+#### Wireframes
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+<details>
+<summary>Home Page</summary>
 
-------
+<details>
+<summary>Desktop</summary>
 
-## Release History
+![Desktop Image](./readme_media/wireframes/home-desktop.png)
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+</details>
 
-**September 20 2023:** Update Python version to 3.9.17.
+<details>
+<summary>Tablet</summary>
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
+![Tablet Image](./readme_media/wireframes/home-tablet.png)
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+</details>
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+<details>
+<summary>Mobile</summary>
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+![Mobile Image](./readme_media/wireframes/home-mobile.png)
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
+</details>
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+</details>
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
+<details>
+<summary>Cart Page</summary>
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+<details>
+<summary>Desktop</summary>
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+![Desktop Image](./readme_media/wireframes/cart-desktop.png)
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+</details>
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+<details>
+<summary>Tablet</summary>
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+![Tablet Image](./readme_media/wireframes/cart-tablet.png)
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+</details>
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+<details>
+<summary>Mobile</summary>
 
-------
+![Mobile Image](./readme_media/wireframes/cart-mobile.png)
 
-## FAQ about the uptime script
+</details>
 
-**Why have you added this script?**
+</details>
 
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
+<details>
+<summary>Checkout Page</summary>
 
-**How will this affect me?**
+<details>
+<summary>Desktop</summary>
 
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
+![Desktop Image](./readme_media/wireframes/checkout-desktop.png)
 
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
+</details>
 
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
+<details>
+<summary>Tablet</summary>
 
-**So….?**
+![Tablet Image](./readme_media/wireframes/checkout-tablet.png)
 
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
+</details>
 
-**Can I opt out?**
+<details>
+<summary>Mobile</summary>
 
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
+![Mobile Image](./readme_media/wireframes/checkout-mobile.png)
 
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
+</details>
 
-**Anything more?**
+</details>
 
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
+<details>
+<summary>Individual Products Page</summary>
 
----
+<details>
+<summary>Desktop</summary>
 
-Happy coding!
+![Desktop Image](./readme_media/wireframes/individual-products-desktop.png)
+
+</details>
+
+<details>
+<summary>Tablet</summary>
+
+![Tablet Image](./readme_media/wireframes/individual-products-tablet.png)
+
+</details>
+
+<details>
+<summary>Mobile</summary>
+
+![Mobile Image](./readme_media/wireframes/individual-products-mobile.png)
+
+</details>
+
+</details>
+
+<details>
+<summary>Login Page</summary>
+
+<details>
+<summary>Desktop</summary>
+
+![Desktop Image](./readme_media/wireframes/login-desktop.png)
+
+</details>
+
+<details>
+<summary>Tablet</summary>
+
+![Tablet Image](./readme_media/wireframes/login-tablet.png)
+
+</details>
+
+<details>
+<summary>Mobile</summary>
+
+![Mobile Image](./readme_media/wireframes/login-mobile.png)
+
+</details>
+
+</details>
+
+<details>
+<summary>Products Page</summary>
+
+<details>
+<summary>Desktop</summary>
+
+![Desktop Image](./readme_media/wireframes/products-desktop.png)
+
+</details>
+
+<details>
+<summary>Tablet</summary>
+
+![Tablet Image](./readme_media/wireframes/products-tablet.png)
+
+</details>
+
+<details>
+<summary>Mobile</summary>
+
+![Mobile Image](./readme_media/wireframes/products-mobile.png)
+
+</details>
+
+</details>
+
+<details>
+<summary>Profile Page</summary>
+
+<details>
+<summary>Desktop</summary>
+
+![Desktop Image](./readme_media/wireframes/profile-desktop.png)
+
+</details>
+
+<details>
+<summary>Tablet</summary>
+
+![Tablet Image](./readme_media/wireframes/profile-tablet.png)
+
+</details>
+
+<details>
+<summary>Mobile</summary>
+
+![Mobile Image](./readme_media/wireframes/profile-mobile.png)
+
+</details>
+
+</details>
+
+<details>
+<summary>Sign up Page</summary>
+
+<details>
+<summary>Desktop</summary>
+
+![Desktop Image](./readme_media/wireframes/sign_up-desktop.png)
+
+</details>
+
+<details>
+<summary>Tablet</summary>
+
+![Tablet Image](./readme_media/wireframes/sign-up-tablet.png)
+
+</details>
+
+<details>
+<summary>Mobile</summary>
+
+![Mobile Image](./readme_media/wireframes/sign-up-mobile.png)
+
+</details>
+
+</details>
+
+### Accessability
+
+
+
+### Database schema
+
+![database schema](./readme_media/data_schema/data_schema.png)
+
+#### Final data schema
+
+
+### CRUD
+
+#### Step 1 Create
+
+- All the models were created in my models.py file, and then within my routes.py file, by retrieving the form data, making defensive checks, and then adding and committing them to the database.
+
+#### Step 2 Read
+
+- This was achieved by - When users add a book onto the website, All the information of the book will be displayed on the browse books page, it will also be stored on the users profile.
+- Reviews, when users add a review to a book it will be displayed under that books review page, and it will also be viewed on the users profile.
+
+#### Step 3 Update
+
+- Users can update their reviews and they can update the information on the book from their profile page with clear buttons easily visible for users to see that they can edit their reviews and book.
+
+#### Step 4 Delete
+
+_ Users can delete all their reviews and books from their profile page, both reviews and books added have a delete button, but firstly user will be prompted with modal if they are sure they'd like to delete their review or book. If users decide to delete, a review or book, It will be deleted from the whole website.
+
+## Features
+
+
+
+## Technologies Used
+
+### Languages Used
+
+HTML, CSS, JavaScript and Python have been used for this project.
+
+### Frameworks, Libraries & Programs Used
+
+Git - For version control.
+
+
+
+[Github](https://github.com/Craig-Hudson) - To save and store the files for the website.
+
+​
+[Google Fonts](https://fonts.google.com/) - To import the fonts used on the website.
+
+​
+[Font Awesome](https://fontawesome.com/) - For the iconography on the website.
+
+​Chrome Dev Tools - To troubleshoot and test features, solve issues with responsiveness and styling.
+
+[Convert png to webp](https://www.freeconvert.com/) - I converted my images to webp using this site.
+
+[tiny.png](https://tinypng.com/) - To reduce the file size of my images for better website performance
+
+[Image resizer](https://www.resizepixel.com/) - To reduce any unnecessary height and width on photos, also minimizing file size.
+
+Balsamiq - I used Balsamiq wireframes from a desktop app for my wireframes,
+
+[W3School](https://www.w3schools.com/) To refer to anything Java script related that i may have been unsure of.
+
+Gitpod - I have used vscode as my ide
+
+## Testing
+
+All my testing can be found in the [testing file](testing.md)
+
+### Bugs
+
+- **Solved Bugs**
+
+- **Known Bugs**
+
+Currently There is no known bugs
+
+## Deployment & Local Development
+
+### Deployment
+
+Old Heroku Deployment Instructions
+The site is deployed using Heroku. To deploy to Heroku:
+
+1. To successfully deploy on Heroku we first need to create some files: a requirements.txt file and a Procfile.
+
+2. The requirements.txt file contains all the applications and dependencies that are required to run the app. To create the requirements.txt file run the following command in the terminal:
+
+    ```bash
+    pip3 freeze --local > requirements.txt
+    ```
+
+3. The Procfile tells Heroku which files run the app and how to run it. To create the Procfile run the following command in the terminal:
+
+    ```bash
+    echo web: python app.py > Procfile
+    ```
+
+    NOTE: The Procfile uses a capital P and doesn't have a file extension on the end.
+
+4. If the Procfile has been created correctly it will have the Heroku logo next to it. It is also important to check the Procfile contents, as sometimes on creation a blank line will be added at the end of the file. This can sometimes cause problems when deploying to Heroku, so if the file contains a blank line at the end, delete this and save the file. Make sure to save both these files and then add, commit and push them to GitHub.
+
+5. Login (or sign up) to [Heroku.com](https://www.heroku.com).
+
+6. Click the new button and then click create new app.
+
+7. You will then be asked to give your app a name (these must be unique so you cannot reuse bookworm) and select a region. Once these are completed click create app.
+
+8. You will now need to connect the Heroku app to the GitHub repository for the site. Select GitHub in the deployment section, find the correct repository for the project and then click connect.
+
+9. Once the repository is connected, you will need to provide Heroku some config variables it needs to build the app. Click on the settings tab and then click reveal config vars button. You will now need to add the environment key/value variables that were used in the env.py file:
+
+    | KEY | VALUE |
+    | :-- | :-- |
+    | IP | 0.0.0.0 |
+    | PORT | 5000 |
+    | SECRET_KEY | ANY_SECRET_KEY* |
+    | DB_URL | postgresql:///readersrealm |
+    | DEBUG | TRUE** |
+
+    *Denotes a value that is specific to your app.
+
+    **This is set to true to enable us to see any bugs on the live site. ~~Please change to FALSE after deployment.~~
+
+10. You're now ready to click the enable automatic deploys and create button. Heroku will start building the app.
+
+11. As this project utilizes a relational database, there are a few more steps to set this up.
+
+12. On the heroku dashboard go to resources tab and then select add-ons. You will need to search for and select heroku postgres. For this project the hobby dev free tier is fine.
+
+13. Go back into settings and reveal config vars. You should now see a new key called DATABASE_UL and the value should have been pre-populated.
+
+14. We will now need to go the more button on the dashboard and select run console. This is where we will set up the tables in the database we have just created.
+
+15. Type python3 and then once the python interpreter opens, we can run the following:
+
+    ```bash
+    from readersrealm import db
+    db.create_all()
+    exit()
+    ```
+
+16. Now that the relational database has been set up and the tables created, we can now click open app and the Readers realm application should now open in a new tab.
+
+### Local Development
+
+#### How to Fork
+
+To fork the repository:
+
+1. Log in (or sign up) to Github.
+
+2. Go to the repository for this project, [ReadersRealm](https://github.com/Craig-Hudson/online-book-review).
+
+3. Click the Fork button in the top right corner.
+
+#### How to Clone
+
+To clone the repository:
+
+1. Log in (or sign up) to GitHub.
+
+2. Go to the repository for this project, [ReadersRealm](https://github.com/Craig-Hudson/online-book-review).
+
+3. Click on the code button, select whether you would like to clone with HTTPS, SSH or GitHub CLI and copy the link shown.
+
+4. Open the terminal in your code editor and change the current working directory to the location you want to use for the cloned directory.
+
+5. Type the following command in the terminal (after the git clone you will need to paste the link you copied in step 3 above):
+
+    ```bash
+    git clone { & THE LINK FROM STEP 3 }
+    ```
+
+6. Set up a virtual environment (this step is not required if you are using the Code Institute Template in GitPod as this will already be set up for you).
+
+7. Install the packages from the requirements.txt file by running the following command in the Terminal:
+
+    ```bash
+    pip3 install -r requirements.txt
+    ```
+
+- - -
+​
+
+## Credits
+
+### Images used
+
+
+### Code Used
+
+- Most of the code in this project was written my myself, references to w3schools and mdn web docs have been made with some of the code also, weather thats remembering a syntax, or re jogging my memory.
+
+### Content
+
+The use of w3schools/MDN web docs and code institute lessons for any prompts and reminders for any template syntax or how to create the database models.
+
+The other content for this project was written by Craig Hudson.
+
+### media
+
+- The images for this are royalty free images, some images that user's may add may not be royalty free.
+
+### Acknowledgments
+
+I would like to acknowledge the following people who helped me along the way in completing this project:
+
+- My code institute mentor Brian for feedback and the many ways I can improve.
+- My partner for having the patience with me and allowing me more time to work on projects.
+- My fellow classmates Ross and dan for any hints and tips that they have given me over the last few weeks.
+- Other family who have helped test my online book review and have given me constructive feedback, and ideas that I would be able to improve my application.
