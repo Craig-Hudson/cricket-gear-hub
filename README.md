@@ -13,6 +13,7 @@
   - [User Experience (UX)](#user-experience-ux)
     - [User Stories (US)](#user-stories-us)
     - [Design](#design)
+      - [**Colour**](#colour)
       - [typography](#typography)
       - [Structure](#structure)
       - [Imagery](#imagery)
@@ -69,6 +70,9 @@ If a user want's to be able to add a book to display on the website they must be
   
 
 ### Design
+
+#### **Colour**
+![Colour Pallette](./readme_media/design_images/palette.png)
 
 #### typography
 
@@ -301,24 +305,14 @@ If a user want's to be able to add a book to display on the website they must be
 
 #### Step 1 Create
 
-- All the models were created in my models.py file, and then within my routes.py file, by retrieving the form data, making defensive checks, and then adding and committing them to the database.
 
 #### Step 2 Read
 
-- This was achieved by - When users add a book onto the website, All the information of the book will be displayed on the browse books page, it will also be stored on the users profile.
-- Reviews, when users add a review to a book it will be displayed under that books review page, and it will also be viewed on the users profile.
-
 #### Step 3 Update
-
-- Users can update their reviews and they can update the information on the book from their profile page with clear buttons easily visible for users to see that they can edit their reviews and book.
 
 #### Step 4 Delete
 
-_ Users can delete all their reviews and books from their profile page, both reviews and books added have a delete button, but firstly user will be prompted with modal if they are sure they'd like to delete their review or book. If users decide to delete, a review or book, It will be deleted from the whole website.
-
 ## Features
-
-
 
 ## Technologies Used
 
@@ -330,7 +324,7 @@ HTML, CSS, JavaScript and Python have been used for this project.
 
 Git - For version control.
 
-
+[coolor](https://coolors.co/1c2321-7d98a1-5e6572-a9b4c2-eef1ef) This was used for my colour pallette.
 
 [Github](https://github.com/Craig-Hudson) - To save and store the files for the website.
 
@@ -345,8 +339,6 @@ Git - For version control.
 [Convert png to webp](https://www.freeconvert.com/) - I converted my images to webp using this site.
 
 [tiny.png](https://tinypng.com/) - To reduce the file size of my images for better website performance
-
-[Image resizer](https://www.resizepixel.com/) - To reduce any unnecessary height and width on photos, also minimizing file size.
 
 Balsamiq - I used Balsamiq wireframes from a desktop app for my wireframes,
 
