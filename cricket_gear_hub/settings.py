@@ -15,7 +15,7 @@ print(SECRET_KEY)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['8000-craighudson-cricketgear-eidjouv5aki.ws-eu108.gitpod.io']
 
 
 # Application definition
@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',    
     'home',
     'contact',
+    'products'
 ]
 
 MIDDLEWARE = [
