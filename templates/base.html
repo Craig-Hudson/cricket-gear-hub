@@ -17,6 +17,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
               integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
               crossorigin="anonymous">
+        <link rel="stylesheet" href={% static 'css/base.css' %}>
     {% endblock %}
 
     {% block extra_css %}
@@ -40,7 +41,7 @@
     <title>Cricket Gear Hub {% block extra_title %}{% endblock %}</title>
 </head>
 <body>
-<header class="container-fluid fixed-top">
+<header class="container-fluid">
     <div class="row align-items-center">
         <div class="col-lg-4">
             <a href="{% url 'home' %}">
@@ -56,11 +57,14 @@
         <div class="col-lg-4">
             <div class="text-right">
                 <a href="{% url 'contact_us' %}" class="btn btn-link text-dark">Contact us</a>
-                <a href="#" class="btn btn-link text-dark">Signup / Login</a>
+                <a href="#" class="btn btn-link text-dark">Signup</a>
+                <a href="#" class="btn btn-link text-dark">Login</a>
                 <a href="#" class="btn btn-link text-dark">Cart</a>
             </div>
         </div>
     </div>
+    {% include 'includes/nav.html' %}
+
 </header>
 
 
@@ -75,7 +79,26 @@
 {% endblock %}
 
 {% block postloadjs %}
+
 {% endblock %}
+
+<footer class="container-fluid bg-dark text-light py-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <h5>Connect with us</h5>
+                <ul class="list-unstyled">
+                    <li><a href="https://www.facebook.com">Facebook</a></li>
+                    <li><a href="https://www.twitter.com">Twitter</a></li>
+                    <li><a href="https://www.instagram.com">Instagram</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-6 text-lg-right">
+                <a href="#" class="btn btn-primary">Shop Now</a>
+            </div>
+        </div>
+    </div>
+</footer>
 
 
 </body>
