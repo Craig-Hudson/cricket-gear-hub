@@ -1,5 +1,41 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% load static %}
+
 {% block content %}
-    <h1>Test</h1>
+<div class="container mt-4 vh-90">
+    <div class="row">
+        <div class="col-md-6">
+            <!-- Product Image -->
+            {% if product.image %}
+                <img src="{{ product.image.url }}" class="card-img-top img-fluid" alt="Product Image">
+
+            {% else %}
+                <img class="img-fluid" src="{% static 'images/no-image-icon-23489' %}" alt="No photo available image">
+            {% endif %}
+        </div>
+        <div class="col-md-6">
+            <!-- Product Details -->
+            <h2 class="mb-4">{{ product.name }}</h2>
+            <p class="mb-4">{{ product.description }}</p>
+            {% if product.sizes.all %}
+                <p>Sizes:
+                    {% for size in product.sizes.all %}
+                        <button type="button" class="btn btn-outline-secondary">{{ size.name }}</button>
+                    {% endfor %}
+                </p>
+            {% endif %}
+            <p class="mb-4">Price: ${{ product.price }}</p>
+            <form method="post" action="">
+                {% csrf_token %}
+                <!-- Quantity -->
+                <div class="form-group mb-4">
+                    <label for="id_quantity">Quantity:</label>
+                    <input type="number" id="id_quantity" name="quantity" min="1" value="1">
+                </div>
+                <!-- Add to Basket Button -->
+                <button type="submit" class="btn btn-primary mb-4">Add to Basket</button>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}
