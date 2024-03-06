@@ -1,34 +1,49 @@
-{% extends "account/base_entrance.html" %}
-{% load allauth i18n %}
+{% extends "base.html" %}
+{% load i18n %}
+
 {% block head_title %}
     {% trans "Signup" %}
 {% endblock head_title %}
+
 {% block content %}
-    {% element h1 %}
-        {% trans "Sign Up" %}
-    {% endelement %}
-    <p>
-        {% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}
-    </p>
-    {% url 'account_signup' as action_url %}
-    {% element form form=form method="post" action=action_url tags="entrance,signup" %}
-        {% slot body %}
-            {% csrf_token %}
-            {% element fields form=form unlabeled=True %}
-            {% endelement %}
-            {% if redirect_field_value %}
-                <input type="hidden"
-                       name="{{ redirect_field_name }}"
-                       value="{{ redirect_field_value }}" />
-            {% endif %}
-        {% endslot %}
-        {% slot actions %}
-            {% element button tags="prominent,signup" type="submit" %}
-                {% trans "Sign Up" %}
-            {% endelement %}
-        {% endslot %}
-    {% endelement %}
-    {% if SOCIALACCOUNT_ENABLED %}
-        {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
-    {% endif %}
+    <div class="container vh-90">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h1 class="mt-5">{% trans "Sign Up" %}</h1>
+                <p class="lead">
+                    {% blocktrans %}
+                        Already have an account? Then please <a href="{{ login_url }}">sign in</a>.
+                    {% endblocktrans %}
+                </p>
+                {% url 'account_signup' as action_url %}
+                <form method="post" action="{{ action_url }}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="id_username">{% trans "Username" %}</label>
+                        {{ form.username }}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_email">{% trans "Email" %}</label>
+                        {{ form.email }}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_password1">{% trans "Password" %}</label>
+                        {{ form.password1 }}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_password2">{% trans "Password confirmation" %}</label>
+                        {{ form.password2 }}
+                    </div>
+                    {% if redirect_field_value %}
+                        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                    {% endif %}
+                    <button type="submit" class="btn btn-primary">{% trans "Sign Up" %}</button>
+                </form>
+                {% if SOCIALACCOUNT_ENABLED %}
+                    <hr>
+                    {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
 {% endblock content %}

@@ -1,14 +1,13 @@
-
 {% extends 'base.html' %}
 
 {% block extra_title %}- Contact Us{% endblock %}
 
 {% block content %}
-    <div class="container mt-5 pt-5 form-container">
+    <div class="container mt-5 pt-5 vh-90 form-container content-wrapper">
         <h2 class="text-center mb-4">Contact Us</h2>
         <div class="row justify-content-center mb-5">
             <div class="col-md-6">
-                <form method="post" class="d-flex align-items-center flex-column">
+                <form method="post" action="{% url 'contact_us' %}" class="d-flex align-items-center flex-column">
                     {% csrf_token %}
                     <div class="form-group d-flex flex-column align-items-center">
                         <label for="id_name">Name:</label>
