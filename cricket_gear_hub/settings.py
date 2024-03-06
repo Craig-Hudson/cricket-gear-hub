@@ -15,7 +15,9 @@ print(SECRET_KEY)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-craighudson-cricketgear-eidjouv5aki.ws-eu108.gitpod.io']
+ALLOWED_HOSTS = ['8000-craighudson-cricketgear-eidjouv5aki.ws-eu108.gitpod.io',
+                 '127.0.0.1',
+]
 
 
 # Application definition
@@ -93,7 +95,7 @@ ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
 ACCOUNT_USERNAME_MIN_LENGTH = 4
 LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = '/success'
+# LOGIN_REDIRECT_URL = '/'
 
 WSGI_APPLICATION = 'cricket_gear_hub.wsgi.application'
 
@@ -147,6 +149,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
