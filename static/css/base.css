@@ -6,6 +6,11 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    align-items: center;
+}
+
+.container {
+    flex-grow: 1 1 auto;
 }
 
 .carousel-item img {
@@ -18,9 +23,16 @@ body {
     background-color: red;
 }
 
+.vh-90 {
+    min-height: 90vh;
+}
+
 footer {
-    position: fixed!important;
-    bottom: 0!important;
+    /* font-size: 200%; */
+    position: relative;
+    bottom: 0;
     left: 0;
     width: 100%;
+    min-height: 15vh;
+    background-color: red;
 }
