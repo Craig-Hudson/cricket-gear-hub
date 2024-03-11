@@ -13,6 +13,11 @@ class ProductAdmin(admin.ModelAdmin):
     search_fields = ('name', 'description',)
     filter_horizontal = ('sizes',)
 
+    def formfield_for_manytomany(self, db_field, request, **kwargs):
+        if db_field.name == 'sizes':
+            kwargs['queryset'] = Size.objects.order_by('name')
+        return super().formfield_for_manytomany(db_field, request, **kwargs)
+
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = (
