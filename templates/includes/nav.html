@@ -3,7 +3,7 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="collapse navbar-collapse bg-light text-dark mb-5 w-100" id="navbarNav">
             <ul class="navbar-nav w-100 justify-content-between">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProducts" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> All Products </a>
@@ -12,7 +12,7 @@
                         <a class="dropdown-item" href="#">By Rating</a>
                         <a class="dropdown-item" href="#">By Category</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">All Products</a>
+                        <a class="dropdown-item" href="{% url 'products' %}">All Products</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -20,7 +20,7 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownBats">
                         <a class="dropdown-item" href="#">By Price</a>
                         <a class="dropdown-item" href="#">By Rating</a>
-                        <a class="dropdown-item" href="#">By Category</a>
+                        <a class="dropdown-item" href="{% url 'products' %}">All Bats</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -28,7 +28,7 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownPads">
                         <a class="dropdown-item" href="#">By Price</a>
                         <a class="dropdown-item" href="#">By Rating</a>
-                        <a class="dropdown-item" href="#">By Category</a>
+                        <a class="dropdown-item" href="#">All Pads</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -36,7 +36,7 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownShoes">
                         <a class="dropdown-item" href="#">By Price</a>
                         <a class="dropdown-item" href="#">By Rating</a>
-                        <a class="dropdown-item" href="#">By Category</a>
+                        <a class="dropdown-item" href="#">All Spikes</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -44,7 +44,7 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownClothing">
                         <a class="dropdown-item" href="#">By Price</a>
                         <a class="dropdown-item" href="#">By Rating</a>
-                        <a class="dropdown-item" href="#">By Category</a>
+                        <a class="dropdown-item" href="#">All Clothing</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -52,7 +52,7 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownAccessories">
                         <a class="dropdown-item" href="#">By Price</a>
                         <a class="dropdown-item" href="#">By Rating</a>
-                        <a class="dropdown-item" href="#">By Category</a>
+                        <a class="dropdown-item" href="#">All Acessories</a>
                     </div>
                 </li>
             </ul>

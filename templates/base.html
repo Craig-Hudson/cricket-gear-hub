@@ -17,7 +17,8 @@
     {% block corecss %}
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href={% static 'css/base.css' %}>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+
     {% endblock %}
 
     {% block extra_css %}
@@ -50,8 +51,8 @@
                 </a>
             </div>
             <div class="col-lg-4">
-                <form method="GET" action="#" class="form-inline">
-                    <input class="form-control mr-sm-2 rounded-pill" type="search" placeholder="Search"
+                <form method="GET" action="{% url 'products' %}" class="form-inline">
+                    <input class="form-control mr-sm-2 rounded-pill" name="q" type="text" placeholder="Search our site"
                         aria-label="Search">
                     <button class="btn btn-outline-black my-2 my-sm-0 rounded-pill" type="submit">Search</button>
                 </form>
@@ -59,8 +60,12 @@
             <div class="col-lg-4">
                 <div class="text-right">
                     <a href="{% url 'contact_us' %}" class="btn btn-link text-dark">Contact us</a>
-                    <a href="#" class="btn btn-link text-dark">Signup</a>
-                    <a href="#" class="btn btn-link text-dark">Login</a>
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'profile' %}" class="btn btn-link text-dark">Profile</a>
+                    {% else %}
+                        <a href="{% url 'account_login' %}" class="btn btn-link text-dark">Login</a>
+                        <a href="{% url 'account_signup' %}" class="btn btn-link text-dark">Signup</a>
+                    {% endif %}
                     <a href="#" class="btn btn-link text-dark">Cart</a>
                 </div>
             </div>
