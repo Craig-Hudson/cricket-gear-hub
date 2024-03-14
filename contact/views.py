@@ -17,6 +17,7 @@ def contact_us(request):
             return redirect('contact_success')  # Redirect to a success page
     else:
         form = ContactForm()
+        
     return render(request, 'contact/contact.html', {'form': form})
 
 def contact_success(request):

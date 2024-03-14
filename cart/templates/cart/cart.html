@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+<div class="cart">
+    <div class="cart-items">
+        <h2>Your Cart</h2>
+        <!-- {% for item in cart_items %} -->
+        <div class="cart-item">
+            <div class="item-details">
+                <img src="" alt="">
+                <h3>Item</h3>
+                <p>{{ description }}</p>
+                <p>Price: $40</p>
+                <div class="quantity">
+                    <span class="minus">-</span>
+                    <input type="number" value="" min="1">
+                    <span class="plus">+</span>
+                </div>
+                <p>Total: $</p>
+            </div>
+        </div>
+        <!-- {% endfor %} -->
+    </div>
+    <div class="cart-summary">
+        <h2>Summary</h2>
+        <hr>
+        <div class="summary-items">
+            <p>Total Items: </p>
+            <p>Total Price: $</p>
+        </div>
+        <hr>
+        <a href="#" class="proceed-btn">Proceed to Checkout</a>
+    </div>
+</div>
+
+
+{% endblock %}

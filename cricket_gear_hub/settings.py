@@ -15,8 +15,7 @@ print(SECRET_KEY)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-craighudson-cricketgear-eidjouv5aki.ws-eu108.gitpod.io',
-                 '127.0.0.1',
+ALLOWED_HOSTS = ['8000-craighudson-cricketgear-eidjouv5aki.ws-eu109.gitpod.io',
 ]
 
 
@@ -37,6 +36,7 @@ INSTALLED_APPS = [
     'contact',
     'products',
     'profiles',
+    'cart',
 ]
 
 MIDDLEWARE = [
@@ -66,6 +66,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'cart.contexts.cart_contents',
             ],
         },
     },
