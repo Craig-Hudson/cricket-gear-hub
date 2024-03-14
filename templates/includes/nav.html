@@ -10,7 +10,7 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownProducts">
                         <a class="dropdown-item" href="{% url 'products' %}?sort=price" >By Price(Low to High)</a>
                         <a class="dropdown-item" href="{% url 'products' %}?sort=rating">By Rating</a>
-                        <a class="dropdown-item" href="#">By Category</a>
+                        <a class="dropdown-item" href="{% url 'products' %}?sort=category">By Category</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{% url 'products' %}">All Products</a>
                     </div>

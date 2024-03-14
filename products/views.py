@@ -1,6 +1,6 @@
 from django.shortcuts import render, reverse, redirect, get_object_or_404
 from django.contrib import messages
-from django.db.models import Q, Avg
+from django.db.models import Q, Avg, F
 from .models import Product, Category
 
 
@@ -26,13 +26,15 @@ def all_products(request):
             queries = Q(name__icontains=query) | Q(description__icontains=query)
             products = products.filter(queries)
 
-        # sorting by price lowest to highest and sorting by rating highest to lowest
+        # Sorting by price, rating, or category
         if 'sort' in request.GET:
             sort = request.GET['sort']
             if sort == 'price':
                 products = products.order_by('price')
             elif sort == 'rating':
                 products = products.annotate(avg_rating=Avg('rating')).order_by('-avg_rating')
+            elif sort == 'category':
+                products = products.order_by('category__name')
 
     context = {
         'products': products,
@@ -42,6 +44,7 @@ def all_products(request):
     }
 
     return render(request, 'products/products.html', context)
+
 
 
 

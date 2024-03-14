@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-<div class="container mt-4 vh-90">
+<div class="container-fluid mt-4 vh-90">
     <div class="row">
         <div class="col-md-6">
             <!-- Product Image -->
@@ -10,13 +10,13 @@
                 <img src="{{ product.image.url }}" class="card-img-top img-fluid" alt="Product Image">
 
             {% else %}
-                <img class="img-fluid" src="{% static 'images/no-image-icon-23489' %}" alt="No photo available image">
+                <img class="img-fluid" src="{% static 'images/no-image-icon-23489.webp' %}" alt="No photo available image">
             {% endif %}
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 d-flex flex-column align-items-center justify-content-center justify-content-between align-items-center">
             <!-- Product Details -->
             <h2 class="mb-4">{{ product.name }}</h2>
-            <p class="mb-4">{{ product.description }}</p>
+            <p class="mb-4">Description: {{ product.description }}</p>
             {% if product.sizes.all %}
                 <p>Sizes:
                     {% for size in product.sizes.all %}
@@ -25,7 +25,7 @@
                 </p>
             {% endif %}
             <p class="mb-4">Price: ${{ product.price }}</p>
-            <form method="post" action="">
+            <form  class="d-flex align-items-center flex-column" method="Post" action="">
                 {% csrf_token %}
                 <!-- Quantity -->
                 <div class="form-group mb-4">
