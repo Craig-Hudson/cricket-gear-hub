@@ -15,7 +15,7 @@ print(SECRET_KEY)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-craighudson-cricketgear-eidjouv5aki.ws-eu109.gitpod.io',
+ALLOWED_HOSTS = ['8000-craighudson-cricketgear-eidjouv5aki.ws-eu110.gitpod.io',
 ]
 
 
