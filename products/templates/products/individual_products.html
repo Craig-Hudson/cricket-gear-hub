@@ -8,7 +8,6 @@
             <!-- Product Image -->
             {% if product.image %}
                 <img src="{{ product.image.url }}" class="card-img-top img-fluid" alt="Product Image">
-
             {% else %}
                 <img class="img-fluid" src="{% static 'images/no-image-icon-23489.webp' %}" alt="No photo available image">
             {% endif %}
@@ -17,33 +16,36 @@
             <!-- Product Details -->
             <h2 class="mb-4">{{ product.name }}</h2>
             <p class="mb-4">Description: {{ product.description }}</p>
-            {% if product.sizes.all %}
-                <p>Sizes:
-                    {% for size in product.sizes.all %}
-                        <button type="button" class="btn btn-outline-secondary">{{ size.name }}</button>
-                    {% endfor %}
-                </p>
-            {% endif %}
+            <p>Sizes:
+                {% if product.sizes.all %}
+                    <form method="POST" action="{% url 'add_to_cart' product.id %}">
+                        {% csrf_token %}
+                        {% for size in product.sizes.all %}
+                            <input type="radio" id="size_{{ product.id }}_{{ size.id }}" name="size" value="{{ size.id }}">
+                            <label for="size_{{ product.id }}_{{ size.id }}">{{ size.name }}</label><br>
+                        {% endfor %}
+                        <!-- Quantity -->
+                        <div class="form-group mb-4">
+                            <label for="id_quantity">Quantity:</label>
+                            <input type="number" id="id_quantity" name="quantity" min="1" value="1">
+                        </div>
+                        <div class="col-12">
+                            <a href="{% url 'products' %}" class="btn rounded-0 mt-5">
+                                <span class="icon">
+                                    <i class="fas fa-chevron-left"></i>
+                                </span>
+                                <span class="text-uppercase">Keep Shopping</span>
+                            </a>
+                            <input type="submit" class="btn btn-black rounded-0 text-uppercase mt-5" value="Add to Bag">
+                        </div>
+                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                    </form>
+                {% else %}
+                    <button type="button" class="btn btn-outline-secondary">N/A</button>
+                {% endif %}
+            </p>
+            
             <p class="mb-4">Price: ${{ product.price }}</p>
-            <form  class="d-flex align-items-center flex-column" method="Post" action="{% url 'add_to_cart' product.id %}">
-                {% csrf_token %}
-                <!-- Quantity -->
-                <div class="form-group mb-4">
-                    <label for="id_quantity">Quantity:</label>
-                    <input type="number" id="id_quantity" name="quantity" min="1" value="1" data-item_id="{{ product.id }}" id="id_qty_{{ product.id }}">
-                </div>
-                <div class="col-12">
-                    <a href="{% url 'products' %}" class="btn rounded-0 mt-5">
-                        <!-- <span class="icon">
-                            <i class="fas fa-chevron-left"></i>
-                        </span> -->
-                        <span class="text-uppercase">Keep Shopping</span>
-                    </a>
-                    <input type="submit" class="btn btn-black rounded-0 text-uppercase mt-5" value="Add to Bag">
-                </div>
-                <input type="hidden" name="redirect_url" value="{{ request.path }}">
-            </div>
-            </form>
         </div>
     </div>
 </div>
