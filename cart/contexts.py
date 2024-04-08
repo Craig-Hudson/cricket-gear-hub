@@ -1,7 +1,7 @@
 from decimal import Decimal
 from django.conf import settings
 from django.shortcuts import get_object_or_404
-from products.models import Product
+from products.models import Product, Size
 
 def cart_contents(request):
     cart_items = []
@@ -10,20 +10,25 @@ def cart_contents(request):
     delivery = Decimal('3.99')
     cart = request.session.get('cart', {})
 
-    for item_id, quantity in cart.items():
-        product = get_object_or_404(Product, pk=item_id)
+    for item_key, quantity in cart.items():
+        if '_' in item_key:
+            product_id, size_id = item_key.split('_')  # Split product ID and size ID
+            product = get_object_or_404(Product, pk=product_id)
+            size = get_object_or_404(Size, pk=size_id)  
+        else:
+            product = get_object_or_404(Product, pk=item_key)
+            size = None
+
         subtotal_for_item = quantity * product.price  
         total += subtotal_for_item  
         product_count += quantity
         cart_items.append({
-            'item_id': item_id,
+            'item_key': item_key,
             'quantity': quantity,
             'product': product,
+            'size': size, 
             'subtotal': subtotal_for_item,
         })
-
-    # Add delivery fee to the total
-    total += delivery
 
     # Calculate grand total
     grand_total = total + delivery
