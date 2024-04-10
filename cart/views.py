@@ -1,5 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from django.contrib import messages
+from django.conf import settings
 
 
 def view_cart(request):
@@ -8,41 +9,54 @@ def view_cart(request):
 
 def add_to_cart(request, item_id):
     """ Add a quantity of the specified product to the shopping cart """
+    try:
+        quantity = int(request.POST.get('quantity'))
+        size_id = request.POST.get('size')
+        redirect_url = request.POST.get('redirect_url')
+        cart = request.session.get('cart', {})
 
-    quantity = int(request.POST.get('quantity'))
-    size_id = request.POST.get('size')  # Get the selected size ID
-    redirect_url = request.POST.get('redirect_url')
-    cart = request.session.get('cart', {})
+        item_key = f"{item_id}_{size_id}" if size_id else str(item_id)
 
-    # Create a unique key for each item based on product ID and size ID
-    item_key = f"{item_id}_{size_id}" if size_id else str(item_id)
+        if item_key in cart:
+            cart[item_key] += quantity
+        else:
+            cart[item_key] = quantity
 
+        request.session['cart'] = cart
+        messages.success(request, 'Item added to cart successfully.')
+        return redirect(redirect_url)
 
-    if item_key in cart:
-        cart[item_key] += quantity
-    else:
-        cart[item_key] = quantity
-
-    request.session['cart'] = cart
-    return redirect(redirect_url)
+    except Exception as e:
+        print(f"An error occurred: {str(e)}")
+        return HttpResponse(status=500)
 
 def update_cart(request, item_key):
     """ Update the quantity of an item in the cart """
-    if request.method == 'POST':
-        quantity = int(request.POST.get('quantity'))
-        cart = request.session.get('cart', {})
-        cart[item_key] = quantity
-        request.session['cart'] = cart
-        messages.success(request, 'Cart updated successfully.')
-    return redirect('view_cart')
+    try:
+        if request.method == 'POST':
+            quantity = int(request.POST.get('quantity'))
+            cart = request.session.get('cart', {})
+            cart[item_key] = quantity
+            request.session['cart'] = cart
+            messages.success(request, 'Cart updated successfully.')
+        return redirect('view_cart')
+
+    except Exception as e:
+        print(f"An error occurred: {str(e)}")
+        return HttpResponse(status=500)
 
 def remove_from_cart(request, item_key):
     """ Remove an item from the cart """
+    try:
+        cart = request.session.get('cart', {})
 
-    cart = request.session.get('cart', {})
+        if item_key in cart:
+            del cart[item_key]
+            request.session['cart'] = cart
+            messages.success(request, 'Item removed from cart successfully.')
 
-    if item_key in cart:
-        del cart[item_key]
-        request.session['cart'] = cart
+        return redirect('view_cart')
 
-    return redirect('view_cart')
+    except Exception as e:
+        print(f"An error occurred: {str(e)}")
+        return HttpResponse(status=500)
