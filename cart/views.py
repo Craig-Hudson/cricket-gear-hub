@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, HttpResponse
 from django.contrib import messages
 from django.conf import settings
-
+from products.models import Product
 
 def view_cart(request):
     """ A view to render the cart page """
@@ -9,6 +9,10 @@ def view_cart(request):
 
 def add_to_cart(request, item_id):
     """ Add a quantity of the specified product to the shopping cart """
+    
+    product = Product.objects.get(pk=item_id)
+
+    
     try:
         quantity = int(request.POST.get('quantity'))
         size_id = request.POST.get('size')
@@ -23,7 +27,7 @@ def add_to_cart(request, item_id):
             cart[item_key] = quantity
 
         request.session['cart'] = cart
-        messages.success(request, 'Item added to cart successfully.')
+        messages.success(request, f'Added {product.name} to your bag')
         return redirect(redirect_url)
 
     except Exception as e:
