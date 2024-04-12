@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'products',
     'profiles',
     'cart',
+    'checkout',
 ]
 
 MIDDLEWARE = [
@@ -132,6 +133,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+DELIVERY = 3.99
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
