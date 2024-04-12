@@ -19,7 +19,7 @@ def cart_contents(request):
             product = get_object_or_404(Product, pk=item_key)
             size = None
 
-        subtotal_for_item = quantity * product.price  
+        subtotal_for_item = quantity * product.price
         total += subtotal_for_item  
         product_count += quantity
         cart_items.append({
@@ -28,6 +28,8 @@ def cart_contents(request):
             'product': product,
             'size': size, 
             'subtotal': subtotal_for_item,
+            'product_name': product.name,  
+            'product_price': product.price,  
         })
 
     # Calculate grand total
