@@ -41,7 +41,24 @@
                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
                     </form>
                 {% else %}
-                    <button type="button" class="btn btn-outline-secondary">N/A</button>
+                    <form method="POST" action="{% url 'add_to_cart' product.id %}">
+                        {% csrf_token %}
+                        <!-- Quantity -->
+                        <div class="form-group mb-4">
+                            <label for="id_quantity">Quantity:</label>
+                            <input type="number" id="id_quantity" name="quantity" min="1" value="1">
+                        </div>
+                        <div class="col-12">
+                            <a href="{% url 'products' %}" class="btn rounded-0 mt-5">
+                                <span class="icon">
+                                    <i class="fas fa-chevron-left"></i>
+                                </span>
+                                <span class="text-uppercase">Keep Shopping</span>
+                            </a>
+                            <input type="submit" class="btn btn-black rounded-0 text-uppercase mt-5" value="Add to Bag">
+                        </div>
+                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                    </form>
                 {% endif %}
             </p>
             
