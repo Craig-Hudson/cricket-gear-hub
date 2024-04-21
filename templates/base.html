@@ -49,43 +49,68 @@
 <body>
     <header class="container-fluid">
         <div class="row align-items-center">
-            <div class="col-lg-4">
+            <div class="col-lg-3">
                 <a href="{% url 'home' %}">
                     <h1 class="text-dark">Cricket Gear Hub</h1>
                 </a>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-6">
                 <form method="GET" action="{% url 'products' %}" class="form-inline">
                     <input class="form-control mr-sm-2 rounded-pill" name="q" type="text" placeholder="Search our site"
                         aria-label="Search">
-                    <button class="btn btn-outline-black my-2 my-sm-0 rounded-pill" type="submit">Search</button>
+                    <button class="btn btn-outline-black btn-dark text-white my-2 my-sm-0 rounded-pill" type="submit">Search</button>
                 </form>
             </div>
-            <div class="col-lg-4">
-                <div class="text-right">
-                    <a href="{% url 'contact_us' %}" class="btn btn-link text-dark">Contact us</a>
-                    {% if user.is_authenticated %}
-                        <a href="{% url 'profile' %}" class="btn btn-link text-dark">Profile</a>
-                    {% else %}
-                        <a href="{% url 'account_login' %}" class="btn btn-link text-dark">Login</a>
-                        <a href="{% url 'account_signup' %}" class="btn btn-link text-dark">Signup</a>
-                    {% endif %}
-                    <a href="{% url 'view_cart' %}" class="btn btn-link text-dark">Cart £{{ total }}</a>
+            <div class="col-lg-3 col-12 d-flex justify-content-center m-auto">
+                <div class="col-3 d-flex align-items-center pt-1">
+                    <button class="navbar-toggler d-lg-none navbar-dark" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <!-- Font Awesome bars icon -->
+                        <span class="navbar-toggler-icon fas fa-bars"></span>
+                    </button>
+                </div>
+                                
+                <div class="col-9 btn-group" role="group">
+                    <a href="#" class="btn btn-link text-dark dropdown-toggle" id="accountDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-user fa-md"></i>
+                    </a>
+                    <a href="{% url 'contact_us' %}" class="btn btn-link text-dark"><i class="fas fa-envelope fa-lg"></i></a>
+
+                   
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="accountDropdown">
+                        {% if user.is_authenticated %}
+                            {% if user.is_superuser %}
+                                <a class="dropdown-item" href="{% url 'add_product' %}"><i class="fas fa-plus"></i> Product Management</a>
+                            {% endif %}
+                            <a class="dropdown-item" href="{% url 'profile' %}"><i class="fas fa-user"></i> Profile</a>
+                            <a class="dropdown-item" href="{% url 'account_logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        {% else %}
+                            <a class="dropdown-item" href="{% url 'account_login' %}"><i class="fas fa-sign-in-alt"></i> Login</a>
+                            <a class="dropdown-item" href="{% url 'account_signup' %}"><i class="fas fa-user-plus"></i> Signup</a>
+                        {% endif %}
+
+                    </div>
+                    <a href="{% url 'view_cart' %}" class="btn btn-link text-dark"><i class="fas fa-shopping-cart"></i> £{{ total }}</a>
                 </div>
             </div>
         </div>
-        {% include 'includes/nav.html' %}
-
+        <!-- Include the appropriate navigation based on screen size -->
+        <div class="d-lg-none">
+            {% include 'includes/nav_mobile.html' %}
+        </div>
+        <div class="d-none d-lg-block">
+            {% include 'includes/nav_desktop.html' %}
+        </div>
     </header>
 
-
-    {% if messages %}
     <div class="message-container">
-        {% for message in messages%}
-            {% include 'includes/toasts/toast_success.html'%}
+        {% for message in messages %}
+            {% if message.tags == 'success' %}
+                {% include 'includes/toasts/toast_success.html' %}
+            {% elif message.tags == 'error' %}
+                {% include 'includes/toasts/toast_error.html' %}
+            {% endif %}
         {% endfor %}
     </div>
-    {% endif %}
 
     {% block page_header %}
     {% endblock %}
@@ -104,5 +129,6 @@
     {% endblock %}
 
 </body>
+
 
 </html>

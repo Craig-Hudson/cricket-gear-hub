@@ -1,0 +1,60 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#"></a>
+    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button> -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProducts" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> All Products </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownProducts">
+                    <a class="dropdown-item" href="{% url 'products' %}?sort=price" >By Price(Low to High)</a>
+                    <a class="dropdown-item" href="{% url 'products' %}?sort=rating">By Rating</a>
+                    <a class="dropdown-item" href="{% url 'products' %}?sort=category">By Category</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{% url 'products' %}">All Products</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBats" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Cricket Bats </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownBats">
+                    <a class="dropdown-item" href="{% url 'products' %}?category=bats&sort=price">By Price</a>
+                    <a class="dropdown-item" href="{% url 'products' %}?category=bats&sort=rating">By Rating</a>
+                    <a class="dropdown-item" href="{% url 'products' %}?category=bats">All Bats</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPads" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Cricket Pads </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownPads">
+                    <a class="dropdown-item" href="{% url 'products' %}?category=pads&sort=price">By Price</a>
+                    <a class="dropdown-item" href="{% url 'products' %}?category=pads&sort=rating">By Rating</a>
+                    <a class="dropdown-item" href="{% url 'products' %}?category=pads">All Pads</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownShoes" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Cricket Shoes </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownShoes">
+                    <a class="dropdown-item" href="{% url 'products' %}?category=shoes&sort=price">By Price</a>
+                    <a class="dropdown-item" href="{% url 'products' %}?category=shoes&sort=rating">By Rating</a>
+                    <a class="dropdown-item" href="{% url 'products' %}?category=shoes">All Spikes</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownClothing" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Cricket Clothing </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownClothing">
+                    <a class="dropdown-item" href="{% url 'products' %}?category=clothing&sort=price">By Price</a>
+                    <a class="dropdown-item" href="{% url 'products' %}?category=clothing&sort=rating">By Rating</a>
+                    <a class="dropdown-item" href="{% url 'products' %}?category=clothing">All Clothing</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAccessories" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Cricket Accessories </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownAccessories">
+                    <a class="dropdown-item" href="{% url 'products' %}?category=acessories&sort=price">By Price</a>
+                    <a class="dropdown-item" href="{% url 'products' %}?category=acessories&sort=rating">By Rating</a>
+                    <a class="dropdown-item" href="{% url 'products' %}?category=acessories">All Acessories</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>

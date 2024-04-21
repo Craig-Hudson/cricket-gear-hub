@@ -109,3 +109,20 @@ footer {
     min-height: 15vh;
     background-color: red;
 }
+
+.navbar-toggler-icon {
+    color: black; 
+}
+
+
+@media (max-width: 768px) {
+    .search-form {
+        display: none;
+    }
+    .search-icon {
+        display: inline-block;
+    }
+    .header-links .btn-link {
+        padding: 0;
+    }
+}
