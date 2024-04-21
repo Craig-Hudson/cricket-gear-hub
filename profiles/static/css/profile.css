@@ -1,0 +1,8 @@
+.order-history {
+    max-height: 420px;
+    overflow: scroll;
+}
+
+footer {
+    width: 100%!important;
+}
