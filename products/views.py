@@ -1,7 +1,8 @@
 from django.shortcuts import render, reverse, redirect, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q, Avg, F
-from .models import Product, Category
+from .models import Product, Category, Size
+from .forms import ProductForm
 
 
 def all_products(request):
@@ -46,8 +47,6 @@ def all_products(request):
     return render(request, 'products/products.html', context)
 
 
-
-
 def individual_product(request, product_id):
     """ A view to return indivual products on their own page"""
 
@@ -62,3 +61,13 @@ def individual_product(request, product_id):
 
     return render(request, 'products/individual_products.html', context)
 
+
+def add_product(request):
+    """ Add a product to the store """
+    form = ProductForm()
+    template = 'products/add_product.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
