@@ -2,15 +2,8 @@
     <a class="navbar-brand" href="#"></a>
     <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarNav">
         <ul class="navbar-nav bg-dark">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownProducts" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> All Products </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownProducts">
-                    <a class="dropdown-item " href="{% url 'products' %}?sort=price" >By Price(Low to High)</a>
-                    <a class="dropdown-item" href="{% url 'products' %}?sort=rating">By Rating</a>
-                    <a class="dropdown-item" href="{% url 'products' %}?sort=category">By Category</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{% url 'products' %}">All Products</a>
-                </div>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="{% url 'products' %}?sort=price">All Products</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownBats" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Cricket Bats </a>
@@ -21,19 +14,19 @@
                 </div>
             </li>
             <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownShoes" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Cricket Shoes </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownShoes">
+                    <a class="dropdown-item" href="{% url 'products' %}?category=shoes&sort=price">By Price</a>
+                    <a class="dropdown-item" href="{% url 'products' %}?category=shoes&sort=rating">By Rating</a>
+                    <a class="dropdown-item" href="{% url 'products' %}?category=shoes">All Shoes</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownPads" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Cricket Pads </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownPads">
                     <a class="dropdown-item" href="{% url 'products' %}?category=pads&sort=price">By Price</a>
                     <a class="dropdown-item" href="{% url 'products' %}?category=pads&sort=rating">By Rating</a>
                     <a class="dropdown-item" href="{% url 'products' %}?category=pads">All Pads</a>
-                </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownShoes" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Cricket Shoes </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownShoes">
-                    <a class="dropdown-item" href="{% url 'products' %}?category=shoes&sort=price">By Price</a>
-                    <a class="dropdown-item" href="{% url 'products' %}?category=shoes&sort=rating">By Rating</a>
-                    <a class="dropdown-item" href="{% url 'products' %}?category=shoes">All Spikes</a>
                 </div>
             </li>
             <li class="nav-item dropdown">
@@ -47,9 +40,9 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownAccessories" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Cricket Accessories </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownAccessories">
-                    <a class="dropdown-item" href="{% url 'products' %}?category=acessories&sort=price">By Price</a>
-                    <a class="dropdown-item" href="{% url 'products' %}?category=acessories&sort=rating">By Rating</a>
-                    <a class="dropdown-item" href="{% url 'products' %}?category=acessories">All Acessories</a>
+                    <a class="dropdown-item" href="{% url 'products' %}?category=accessories&sort=price">By Price</a>
+                    <a class="dropdown-item" href="{% url 'products' %}?category=accessories&sort=rating">By Rating</a>
+                    <a class="dropdown-item" href="{% url 'products' %}?category=accessories">All Accessories</a>
                 </div>
             </li>
         </ul>

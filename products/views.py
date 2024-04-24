@@ -62,6 +62,7 @@ def individual_product(request, product_id):
 
     return render(request, 'products/individual_products.html', context)
 
+
 @login_required
 def add_product(request):
     """ Add a product to the store """
