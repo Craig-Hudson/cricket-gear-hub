@@ -2,12 +2,12 @@
 {% load static %}
 
 {% block content %}
-<div class="container-fluid mt-4 vh-90">
+<div class="container-fluid mt-4">
     <div class="row">
         <div class="col-md-6">
             <!-- Product Image -->
             {% if product.image %}
-                <img src="{{ product.image.url }}" class="card-img-top img-fluid" alt="Product Image">
+                <img src="{{ product.image.url }}" class="card-img-top img-fluid" alt="{{ product.name}}">
             {% else %}
                 <img class="img-fluid" src="{% static 'images/no-image-icon-23489.webp' %}" alt="No photo available image">
             {% endif %}

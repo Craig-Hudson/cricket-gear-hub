@@ -1,5 +1,5 @@
 html {
-    height: 100%;
+    min-height: 100%;
 }
 
 body {
@@ -9,18 +9,15 @@ body {
     align-items: center;
 }
 
+
 .container {
     flex-grow: 1 1 auto;
 }
 
 .carousel-item img {
-    width: 100%;
+    width: 100vw!important;
     max-height: 400px;
-    /* object-fit: contain; */
-}
-
-.carousel-item {
-    background-color: red;
+    object-fit: cover;
 }
 
 .vh-90 {
@@ -101,13 +98,14 @@ https://github.com/Code-Institute-Solutions/boutique_ado_v1/blob/b5e178737596a1a
 
 
 footer {
-    /* font-size: 200%; */
-    position: relative;
+    /* display: relative;
     bottom: 0;
-    left: 0;
+    left: 0; */
+    margin-top: auto;
     width: 100%;
-    min-height: 15vh;
-    background-color: red;
+    min-height: 20vh;
+    background-color: rgb(33, 37, 41);
+    ;
 }
 
 .navbar-toggler-icon {
