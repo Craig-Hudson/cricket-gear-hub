@@ -7,8 +7,9 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 0;
+    padding: 0;
 }
-
 
 .container {
     flex-grow: 1 1 auto;
@@ -16,7 +17,7 @@ body {
 
 .carousel-item img {
     width: 100vw!important;
-    max-height: 400px;
+    max-height: 550px;
     object-fit: cover;
 }
 
@@ -98,9 +99,6 @@ https://github.com/Code-Institute-Solutions/boutique_ado_v1/blob/b5e178737596a1a
 
 
 footer {
-    /* display: relative;
-    bottom: 0;
-    left: 0; */
     margin-top: auto;
     width: 100%;
     min-height: 20vh;

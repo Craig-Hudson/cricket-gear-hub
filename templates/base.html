@@ -47,15 +47,15 @@
 </head>
 
 <body>
-    <header class="container-fluid">
+    <header class="container-fluid mt-3 mb-3">
         <div class="row align-items-center">
-            <div class="col-lg-3">
+            <div class="col-lg-3 d-flex justify-content-center">
                 <a href="{% url 'home' %}">
-                    <h1 class="text-dark">Cricket Gear Hub</h1>
+                    <img src="{% static 'images/cricket_gear_hub_logo.webp'%}" class="img-fluid" alt="cricket gear hub logo">
                 </a>
             </div>
-            <div class="col-lg-6">
-                <form method="GET" action="{% url 'products' %}" class="form-inline">
+            <div class="col-lg-6 col-12 d-flex justify-content-center">
+                <form method="GET" action="{% url 'products' %}" class="form-inline d-flex justify-content-center">
                     <input class="form-control mr-sm-2 rounded-pill" name="q" type="text" placeholder="Search our site"
                         aria-label="Search">
                     <button class="btn btn-outline-black btn-dark text-white my-2 my-sm-0 rounded-pill" type="submit">Search</button>
