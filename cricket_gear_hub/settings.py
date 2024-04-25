@@ -16,7 +16,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', '')
 DEBUG = DEVELOPMENT in os.environ
 
 ALLOWED_HOSTS = ['8000-craighudson-cricketgear-eidjouv5aki.ws-eu110.gitpod.io',
-                'cricket-gear-hub@herokuapp.com', 'localhost'        
+                'https://git.heroku.com/cricket-gear-hub.git', 'localhost'        
             ]
 
 
