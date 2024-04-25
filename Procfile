@@ -1,1 +1,1 @@
-web : gunicorn cricket_gear_hub.wsgi:application
+web: gunicorn cricket_gear_hub.wsgi:application
