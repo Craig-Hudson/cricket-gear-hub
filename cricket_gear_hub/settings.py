@@ -186,6 +186,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 DEFAULT_FROM_EMAIL = 'Cricket_gear_hub@example.com'
 
 if 'USE_AWS' in os.environ:
+    # Cache control
+    AWS_S3_OBJECT_PARAMETERS = {
+        'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
+        'CacheControl': 'max-age=94608000',
+    }
+
     # Bucket Config
     AWS_STORAGE_BUCKET_NAME = 'cricket-gear-hub-f9339f25dfca.herokuapp.com'
     AWS_S3_REGION_NAME = 'eu-north-1'
