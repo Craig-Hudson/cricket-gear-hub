@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q, Avg, F
 from .models import Product, Category, Size, Review
 from .forms import ProductForm, ReviewForm, EditReviewForm
+import uuid
 
 
 def all_products(request):
