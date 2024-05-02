@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block content %}
 <div class="container-fluid mt-4">
     <div class="row">
@@ -13,56 +12,55 @@
             {% endif %}
         </div>
         <div class="col-md-6 d-flex flex-column justify-content-center align-items-center">
-            <!-- Product Details -->
-            <div class="mb-4">
-                <h2 class="mb-4">{{ product.name }}</h2>
-                <p><span class="font-weight-bold">Description:</span> {{ product.description }}</p>
-                <div class="d-flex align-items-center mb-4">
-                    <span class="mr-2 font-weight-bold">Price:</span>
-                    <span>£{{ product.price }}</span>
-                </div>
-                <div class="d-flex align-items-center mb-4">
-                    <span class="mr-2 font-weight-bold">Size:</span>
-                    {% if product.sizes.all %}
-                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <div>
+                <!-- Product Details -->
+                <h2 class="mb-4 font-weight-bold">{{ product.name }}</h2>
+                <p class="mb-4"><span class="font-weight-bold">Description</span> {{ product.description }}</p>
+                <form method="POST" action="{% url 'add_to_cart' product.id %}">
+                    {% csrf_token %}
+                    <!-- Sizes -->
+                    <div class="d-flex align-items-center mb-4">
+                        <p class="mr-2 font-weight-bold">Sizes:</p>
+                        <div class="btn-group-toggle" data-toggle="buttons">
                             {% for size in product.sizes.all %}
-                                <label class="btn btn-outline-dark">
+                                <label class="btn btn-outline-dark m-1">
                                     <input type="radio" name="size" value="{{ size.id }}" autocomplete="off" required>
                                     {{ size.name }}
                                 </label>
                             {% endfor %}
                         </div>
-                    {% else %}
-                        <p>No sizes available</p>
-                    {% endif %}
-                </div>
-                <div class="d-flex align-items-center mb-4">
-                    <label for="id_quantity" class="mr-2 font-weight-bold">Quantity:</label>
-                    <input type="number" id="id_quantity" name="quantity" min="1" value="1" required>
-                </div>
-                <div class="mb-4">
-                    {% if request.user.is_superuser %}
-                        <a href="{% url 'edit_product' product.id %}" class="btn btn-dark text-white">Edit</a>
-                        <a href="{% url 'delete_product' product.id %}" class="btn btn-dark text-white">Delete</a>
-                    {% else %}
-                        <a href="{% url 'products' %}" class="btn btn-dark text-white mt-3">
-                            <span class="icon">
-                                <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="text-uppercase">Keep Shopping</span>
-                        </a>
-                        <button type="submit" class="btn btn-dark text-white rounded-0 text-uppercase mt-3">Add to Bag</button>
-                    {% endif %}
-                    <input type="hidden" name="redirect_url" value="{{ request.path }}">
-                </div>
+                    </div>
+                    <!-- Quantity -->
+                    <div class="form-group mb-4">
+                        <label for="id_quantity" class="font-weight-bold">Quantity:</label>
+                        <input type="number" id="id_quantity" name="quantity" min="1" value="1">
+                    </div>
+                    <div class="mb-4">
+                        {% if request.user.is_superuser %}
+                            <a href="{% url 'edit_product' product.id %}" class="btn btn-dark text-white">Edit</a>
+                            <a href="{% url 'delete_product' product.id %}" class="btn btn-dark text-white">Delete</a>
+                        {% else %}
+                            <a href="{% url 'products' %}" class="btn btn-dark text-white mt-5">
+                                <span class="icon">
+                                    <i class="fas fa-chevron-left"></i>
+                                </span>
+                                <span class="text-uppercase">Keep Shopping</span>
+                            </a>
+                            <input type="submit" class="btn btn-dark text-white rounded-0 text-uppercase mt-5" value="Add to Bag">
+                        {% endif %}
+                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Review Form -->
+
+<!-- Review section -->
 <div class="container-fluid mt-4">
     <div class="row d-flex flex-column">
+        {% if user.is_authenticated %}
         <div class="col-6 offset-6">
             <div class="mb-4">
                 <h3 class="font-weight-bold">Add a Review</h3>
@@ -79,7 +77,6 @@
                             <option value="5">5 Stars</option>
                         </select>
                     </div>
-                    <!-- Review text -->
                     <div class="form-group">
                         <label for="id_comment" class="font-weight-bold">Review:</label>
                         <textarea id="id_comment" name="comment" class="form-control" rows="4" required></textarea>
@@ -88,8 +85,8 @@
                 </form>
             </div>
         </div>
+        {% endif %}
         <div class="col-6 offset-6">
-            <!-- Existing Reviews -->
             <div class="mb-4">
                 <h3 class="font-weight-bold">Product Reviews</h3>
                 {% if product.reviews.all %}
@@ -113,8 +110,9 @@
                                                 {% endif %}
                                             {% else %}
                                                 <p>Reviewed By {{ review.user }}</p>
-                                                <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#editReviewModal{{ review.id }}">Edit Review</a>
-                                                
+                                                {% if user.is_authenticated %}
+                                                    <a href="#" class="btn btn-dark text-white" data-toggle="modal" data-target="#editReviewModal{{ review.id }}">Edit Review</a>
+                                                {% endif %}
                                             {% endif %}
                                         {% else %}
                                             <p>Reviewed By Anonymous</p>
@@ -150,7 +148,9 @@
                                                         <label for="id_comment" class="font-weight-bold">Review:</label>
                                                         <textarea id="id_comment" name="comment" class="form-control" rows="4" required>{{ review.comment }}</textarea>
                                                     </div>
+                                                
                                                     <button type="submit" class="btn btn-dark text-white btn-sm">Update Review</button>
+                                                   
                                                 </form>
                                             </div>
                                         </div>
@@ -158,6 +158,7 @@
                                 </div>
                             {% endfor %}
                         </div>
+                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
                     </div>
                 {% else %}
                     <p>No reviews for this product yet.</p>
