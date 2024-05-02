@@ -164,6 +164,7 @@ def add_review(request, product_id):
 def edit_review(request, review_id):
     """ Edit a review """
     review = get_object_or_404(Review, pk=review_id)
+    product = review.product
 
     # Check if the logged-in user is the owner of the review
     if request.user == review.user:
@@ -177,7 +178,7 @@ def edit_review(request, review_id):
                 messages.error(request, 'Failed to update review. Please check the form.')
         else:
             form = ReviewForm(instance=review)
-        return render(request, 'products/edit_review.html', {'form': form})
+        return render(request, 'products/individual_products.html', {'form': form})
     elif review.user is None and review.identifier == request.POST.get('identifier'):
         if request.method == 'POST':
             form = ReviewForm(request.POST, instance=review)
@@ -189,7 +190,7 @@ def edit_review(request, review_id):
                 messages.error(request, 'Failed to update review. Please check the form.')
         else:
             form = ReviewForm(instance=review)
-        return render(request, 'products/edit_review.html', {'form': form})
+        return render(request, 'products/individual_products.html', {'form': form})
     else:
         messages.error(request, 'You are not authorized to edit this review.')
         return redirect(reverse('individual_product', args=[product.id]))
