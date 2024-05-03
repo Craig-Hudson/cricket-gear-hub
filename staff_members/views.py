@@ -5,7 +5,8 @@ from .models import StaffMember
 
 def staff_members(request):
     staff_members = StaffMember.objects.all()
-    return render(request, 'staff_members.html', {'staff_members': staff_members})
+    template = 'staff_members/staff_members.html'
+    return render(request, template, {'staff_members': staff_members})
 
 def add_staff_member(request):
     if request.method == 'POST':
@@ -30,7 +31,10 @@ def edit_staff_member(request, staff_member_id):
             return redirect('staff_members')
     else:
         form = EditStaffMemberForm(instance=staff_member)
-    return render(request, 'edit_staff_member.html', {'form': form})
+
+    template = 'staff_members/edit_staff_member.html'
+
+    return render(request, template, {'form': form})
 
 def delete_staff_member(request, staff_member_id):
     staff_member = get_object_or_404(StaffMember, pk=staff_member_id)
