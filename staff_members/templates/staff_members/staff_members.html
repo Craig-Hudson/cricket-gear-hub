@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <h2>Staff Members</h2>
+    <!-- Display staff members here -->
+    <div class="row">
+        {% for staff_member in staff_members %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="{{ staff_member.profile_picture.url }}" class="card-img-top" alt="{{ staff_member.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ staff_member.name }}</h5>
+                    <p class="card-text">{{ staff_member.job_title }}</p>
+                    <p class="card-text">{{ staff_member.bio }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Add staff member button for superusers -->
+    {% if user.is_superuser %}
+        <a href="{% url 'add_staff_member' %}" class="btn btn-primary">Add Staff Member</a>
+    {% endif %}
+</div>
+{% endblock %}
