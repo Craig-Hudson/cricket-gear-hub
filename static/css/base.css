@@ -25,6 +25,14 @@ body {
     min-height: 90vh;
 }
 
+.text-decoration-underline {
+    text-decoration: underline;
+}
+
+.description {
+    cursor: pointer;
+}
+
 /* ------------------------------- bootstrap toasts */
 
 .message-container {

@@ -8,17 +8,67 @@
             <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                 <div class="card mb-4 shadow-sm">
                     {% if product.image %}
+                    <a href="{% url 'individual_product' product.id %}">
                         <img src="{{ product.image.url }}" class="card-img-top img-fluid" alt="{{ product.name }}">
+                    </a>
                     {% else %}
-                        <img src="{% static 'images/no-image-icon-23489.webp' %}" alt="{{ product.name }}">
+                    <a href="{% url 'individual_product' product.id %}">
+                        <img src="{% static 'images/no-image-icon-23489.webp' %}"class="card-img-top img-fluid" alt="{{ product.name }}">
+                    </a>
                     {% endif %}
                     <div class="card-body">
                         <h5 class="card-title">{{ product.name }}</h5>
-                        <p class="card-text">{{ product.description }}</p>
+                        <p class="description-text text-dark description" data-toggle="modal" data-target="#descriptionModal{{ product.id }}">
+                            {% if product.description|wordcount >= 3 %}
+                                <p class="text-decoration-underline font-weight-bold description">{{ product.description|truncatewords:3 }}</p>
+                            {% else %}
+                                <p class="text-decoration-underline font-weight-bold description">{{ product.description }}</p>
+                            {% endif %}
+                        </p>
+                        <div class="modal fade" id="descriptionModal{{ product.id }}" tabindex="-1" role="dialog" aria-labelledby="descriptionModalLabel{{ product.id }}" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="descriptionModalLabel{{ product.id }}">Description</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        {{ product.description }}
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End of Modal -->
                         <div class="d-flex justify-content-between align-items-center">
                             {% if request.user.is_superuser %}
                                 <a href="{% url 'edit_product' product.id %}" class="btn btn-dark text-white">Edit</a>
-                                <a href="{% url 'delete_product' product.id %}" class="btn btn-dark text-white">Delete</a>
+                                <button type="button" class="btn btn-danger text-white" data-toggle="modal" data-target="#deleteModal{{ product.id }}">Delete</button>
+                                <!-- Delete Modal -->
+                                <div class="modal fade" id="deleteModal{{ product.id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel{{ product.id }}" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="deleteModalLabel{{ product.id }}">Confirm Delete</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Are you sure you want to delete {{ product.name }}?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                <a href="{% url 'delete_product' product.id %}" class="btn btn-danger">Delete</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End of Delete Modal -->
                             {% else %}
                                 <div class="btn-group">
                                     <a class="btn btn-sm btn-dark text-white" href="{% url 'individual_product' product.id %}">View</a>
@@ -32,4 +82,14 @@
             {% endfor %}
         </div>
     </div>
+    
+    <script>
+        // JavaScript to toggle modal on description click
+        $(document).ready(function(){
+            $('.description-text').click(function(){
+                var targetModal = $(this).attr('data-target');
+                $(targetModal).modal('show');
+            });
+        });
+    </script>
 {% endblock %}
