@@ -1,15 +1,39 @@
-<div class="container-fluid text-white">
-    <div class="row">
-        <div class="col-lg-6">
+<div class="container-fluid text-white bg-dark py-4">
+    <div class="row justify-content-center">
+        <!-- Connect with us section -->
+        <div class="col-lg-4 text-center">
             <h5>Connect with us</h5>
             <ul class="list-unstyled">
-                <li><a href="https://www.facebook.com">Facebook</a></li>
-                <li><a href="https://www.twitter.com">Twitter</a></li>
-                <li><a href="https://www.instagram.com">Instagram</a></li>
+                <li class="mb-3 mt-3"><a class="text-white" href="https://www.facebook.com"><i class="fab fa-facebook mr-2"></i>Facebook</a></li>
+                <li class="mb-3"><a class="text-white" href="https://www.twitter.com"><i class="fab fa-twitter mr-2"></i>Twitter</a></li>
+                <li class="mb-3"><a class="text-white" href="https://www.instagram.com"><i class="fab fa-instagram mr-2"></i>Instagram</a></li>
             </ul>
         </div>
-        <div class="col-lg-6 text-lg-right">
-            <a href="{% url 'products' %}" class="btn btn-light text-dark ">Shop Now</a>
+        <!-- Cricket Products section -->
+        <div class="col-lg-4 text-center">
+            <h5>Cricket Products</h5>
+            <ul class="list-unstyled">
+                <li class="mb-3 mt-3"><a class="text-white" href="{% url 'products' %}?category=bats">Cricket Bats</a></li>
+                <li class="mb-3"><a class="text-white" href="{% url 'products' %}?category=shoes">Cricket Shoes</a></li>
+                <li class="mb-3"><a class="text-white" href="{% url 'products' %}?category=pads">Cricket Pads</a></li>
+                <li class="mb-3"><a class="text-white" href="{% url 'products' %}?category=clothing">Cricket Clothing</a></li>
+                <li class="mb-3"><a class="text-white" href="{% url 'products' %}?category=accessories">Cricket Accessories</a></li>
+            </ul>
+        </div>
+        <div class="col-lg-4 text-center text-white">
+            <div class="d-flex flex-column align-items-center mr-4 text-white">
+                <h5>Quick Links</h5>
+                <a href="{% url 'products' %}" class="mb-3 mt-3 text-white"><i class="fas fa-shopping-bag mb-3 mr-2"></i>Shop Now</a>
+                <a href="{% url 'staff_members' %}" class="mb-3 text-white"><i class="fas fa-users mr-2 mb-3"></i>Meet the Team</a>
+                <a href="{% url 'contact_us' %}" class="text-white"><i class="fas fa-envelope mr-2"></i>Contact Us</a>
+            </div>
+        </div>
+        
+    </div>
+    <!-- Additional disclaimer -->
+    <div class="row justify-content-center mt-3">
+        <div class="col-lg-12 text-center">
+            <p class="mb-0">This site was created for educational purposes and built by Craig Hudson.</p>
         </div>
     </div>
 </div>
