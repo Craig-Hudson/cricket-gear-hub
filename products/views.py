@@ -127,10 +127,14 @@ def delete_product(request, product_id):
     messages.success(request, 'Product deleted!')
     return redirect(reverse('products'))
 
-
+@login_required
 def add_review(request, product_id):
     """Add reviews to an individual product"""
     product = get_object_or_404(Product, pk=product_id)
+
+    if not request.user.is_authenticated:
+        messages.error(request, 'Sorry you must be logged in to add a review')
+        return redirect(reverse('login'))
 
     if request.method == "POST":
         form = ReviewForm(request.POST)
