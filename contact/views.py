@@ -4,6 +4,11 @@ from django.conf import settings
 from .forms import ContactForm
 
 def contact_us(request):
+    """
+    Render the contact form page. If the form is submitted successfully,
+    save the form data, send an email notification to the admin, and
+    redirect to the contact success page.
+    """
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
@@ -21,4 +26,7 @@ def contact_us(request):
     return render(request, 'contact/contact.html', {'form': form})
 
 def contact_success(request):
+    """
+    Render the contact success page after a successful form submission.
+    """
     return render(request, 'contact/contact_success.html')
