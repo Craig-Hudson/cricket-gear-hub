@@ -1,4 +1,3 @@
-{% extends "base.html" %}
 {% load static %}
 
 {% block content %}
@@ -8,62 +7,40 @@
             <h2>Your Cart</h2>
             <hr>
             {% if cart_items %}
-                <!-- Include mobile-friendly cart template for tablet screens and smaller -->
-                <div class="d-lg-none">
-                    {% include "includes/mobile_cart.html" %}
-                </div>
-                <!-- Regular cart template for larger screens -->
-                <div class="table-responsive d-none d-md-block">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Product</th>
-                                <th>Price</th>
-                                <th>Quantity</th>
-                                <th>Subtotal</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for item in cart_items %}
-                                <tr class="flex-col">
-                                    <td>{{ item.product.name }}</td>
-                                    <td>{{ item.product.price }}</td>
-                                    <td>
-                                        <form action="{% url 'update_cart' item.item_key %}" method="post">
-                                            {% csrf_token %}
-                                            <input type="number" name="quantity" value="{{ item.quantity }}">
-                                            <button type="submit">Update</button>
-                                        </form>
-                                    </td>
-                                    <td>{{ item.subtotal }}</td>
-                                    <td>
+                {% for item in cart_items %}
+                    <div class="card mb-3">
+                        <div class="row no-gutters">
+                            
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ item.product.name }}</h5>
+                                    <p class="card-text">Price: £{{ item.product.price }}</p>
+                                    <form action="{% url 'update_cart' item.item_key %}" method="post">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <label for="quantity">Quantity:</label>
+                                            <input type="number" name="quantity" id="quantity" class="form-control" value="{{ item.quantity }}">
+                                        </div>
+                                        <button type="submit" class="btn btn-dark text-white">Update</button>
                                         <a href="{% url 'remove_from_cart' item.item_key %}">Remove</a>
-                                    </td>
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-                <!-- Summary table for bag total, delivery, and grand total -->
-                <div class="row mb-3">
+                                    </form>
+                                    <p class="card-text"><small class="text-muted">Subtotal: £{{ item.subtotal }}</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                <div class="row mb-4">
                     <div class="col-md-6 offset-md-6">
-                        <table class="table">
-                            <tbody>
-                                <tr>
-                                    <td><strong>Bag Total:</strong></td>
-                                    <td>£{{ total }}</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Delivery:</strong></td>
-                                    <td>£{{ delivery }}</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Grand Total:</strong></td>
-                                    <td>£{{ grand_total }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <a href="{% url 'checkout' %}" class="btn btn-dark text-white">Proceed to Checkout</a>
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Cart Summary</h5>
+                                <p class="card-text">Bag Total: £{{ total }}</p>
+                                <p class="card-text">Delivery: £{{ delivery }}</p>
+                                <p class="card-text">Grand Total: £{{ grand_total }}</p>
+                                <a href="{% url 'checkout' %}" class="btn btn-dark text-white">Proceed to Checkout</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             {% else %}
@@ -74,8 +51,7 @@
 </div>
 {% endblock %}
 
-
-{% block extra_js %}
+<!-- {% block extra_js %}
 <script>
 $(document).ready(function () {
     // Initialize bag total variable outside of the function
@@ -150,4 +126,5 @@ $(document).ready(function () {
 });
 
 </script>
-{% endblock %}
+{% endblock %} -->
+
