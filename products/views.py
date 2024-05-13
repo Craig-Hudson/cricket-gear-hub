@@ -13,12 +13,16 @@ def all_products(request):
     query = None
     categories = None
     sort = None
+    category_name = None  # Initialize category name variable
 
     if request.GET:
         if 'category' in request.GET:
             categories = request.GET.getlist('category')
             products = products.filter(category__name__in=categories)
             categories = Category.objects.filter(name__in=categories)
+
+            # Extracting the first category name if multiple categories selected
+            category_name = categories.first().name if categories.exists() else None
 
         if 'q' in request.GET:
             query = request.GET['q']
@@ -43,10 +47,12 @@ def all_products(request):
         'products': products,
         'search_term': query,
         'current_categories': categories,
-        'sort': sort
+        'sort': sort,
+        'category_name': category_name
     }
 
     return render(request, 'products/products.html', context)
+
 
 
 def individual_product(request, product_id):

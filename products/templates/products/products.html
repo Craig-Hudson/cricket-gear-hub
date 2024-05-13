@@ -3,6 +3,9 @@
 
 {% block content %}
 <div class="container">
+    {% if category_name %}
+        <h2 class="mb-4 d-flex justify-content-center">Cricket {{ category_name|title }}</h2>
+    {% endif %}
     <div class="row">
         {% for product in products %}
         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
