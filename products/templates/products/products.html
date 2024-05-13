@@ -11,12 +11,12 @@
         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
             <div class="card mb-4 shadow-sm">
                 {% if product.image %}
-                <a href="{% url 'individual_product' product.id %}">
-                    <img src="{{ product.image.url }}" class="card-img-top img-fluid" alt="{{ product.name }}">
+                <a href="{% url 'individual_product' product.id %}" class="d-flex justify-content-center">
+                    <img src="{{ product.image.url }}" class="card-img-top vh-40 vw-50" alt="{{ product.name }}">
                 </a>
                 {% else %}
-                <a href="{% url 'individual_product' product.id %}">
-                    <img src="{% static 'images/no-image-icon-23489.webp' %}" class="card-img-top img-fluid"
+                <a href="{% url 'individual_product' product.id %}" class="d-flex justify-content-center pt-2">
+                    <img src="{% static 'images/no-image-icon-23489.webp' %}" class="card-img-top vh-40 vw-50 img-fluid"
                         alt="{{ product.name }}">
                 </a>
                 {% endif %}

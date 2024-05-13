@@ -3,12 +3,12 @@
 {% block content %}
 <div class="container-fluid mt-4">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 d-flex justify-content-center mb-2">
             <!-- Product Image -->
             {% if product.image %}
-            <img src="{{ product.image.url }}" class="card-img-top img-fluid" alt="{{ product.name}}">
+            <img src="{{ product.image.url }}" class="card-img-top vh-40 vw-50" alt="{{ product.name}}">
             {% else %}
-            <img class="img-fluid" src="{% static 'images/no-image-icon-23489.webp' %}" alt="No photo available image">
+            <img class="vh-40 vw-50" src="{% static 'images/no-image-icon-23489.webp' %}" alt="No photo available image">
             {% endif %}
         </div>
         <div class="col-md-6 d-flex flex-column justify-content-center align-items-center">
@@ -49,8 +49,11 @@
                             </span>
                             <span class="text-uppercase">Keep Shopping</span>
                         </a>
-                        <input type="submit" class="btn btn-dark text-white rounded-0 text-uppercase mt-5"
-                            value="Add to Cart">
+                        <button type="submit" class="btn btn-dark text-white rounded-0 text-uppercase mt-5">
+                            Add to Cart
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        
                         {% endif %}
                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
                     </div>
