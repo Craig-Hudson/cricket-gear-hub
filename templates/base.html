@@ -54,7 +54,7 @@
                     <img src="{% static 'images/cricket_gear_hub_logo.webp'%}" class="img-fluid" alt="cricket gear hub logo">
                 </a>
             </div>
-            <div class="col-lg-6 col-12 d-flex justify-content-center">
+            <div class="col-lg-6 col-12 d-flex justify-content-center mobile-searchbar">
                 <form method="GET" action="{% url 'products' %}" class="form-inline d-flex justify-content-center">
                     <input class="form-control mr-sm-2 rounded-pill" name="q" type="text" placeholder="Search our site"
                         aria-label="Search">
@@ -65,7 +65,7 @@
                 <div class="col-3 d-flex align-items-center pt-1">
                     <button class="navbar-toggler d-lg-none navbar-dark" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <!-- Font Awesome bars icon -->
-                        <span class="navbar-toggler-icon fas fa-bars"></span>
+                        <span class="navbar-toggler-icon fas fa-bars mb-3"></span>
                     </button>
                 </div>
                                 
@@ -80,7 +80,7 @@
                         {% if user.is_authenticated %}
                             {% if user.is_superuser %}
                                 <a class="dropdown-item" href="{% url 'add_product' %}"><i class="fas fa-plus"></i> Product Management</a>
-                                <a class="dropdown-item" href="{% url 'add_staff_member' %}">Staff Management</a>
+                                <a class="dropdown-item" href="{% url 'add_staff_member' %}"><i class="fas fa-plus"></i> Management</a>
                             {% endif %}
                             <a class="dropdown-item" href="{% url 'profile' %}"><i class="fas fa-user"></i> Profile</a>
                             <a class="dropdown-item" href="{% url 'account_logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
@@ -95,7 +95,7 @@
             </div>
         </div>
         <!-- Include the appropriate navigation based on screen size -->
-        <div class="d-lg-none">
+        <div class="d-lg-none mt-2">
             {% include 'includes/nav_mobile.html' %}
         </div>
         <div class="d-none d-lg-block">

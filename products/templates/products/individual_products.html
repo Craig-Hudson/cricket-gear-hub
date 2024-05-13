@@ -85,7 +85,7 @@
 <div class="container-fluid mt-4">
     <div class="row d-flex flex-column">
         {% if user.is_authenticated %}
-        <div class="col-6 offset-6">
+        <div class="col-lg-6 offset-lg-6">
             <div class="mb-4">
                 <h3 class="font-weight-bold">Add a Review</h3>
                 <form method="POST" action="{% url 'add_review' product.id %}">
@@ -110,7 +110,7 @@
             </div>
         </div>
         {% endif %}
-        <div class="col-6 offset-6">
+        <div class="col-lg-6 offset-lg-6">
             <div class="mb-4">
                 <h3 class="font-weight-bold">Product Reviews</h3>
                 {% if product.reviews.all %}

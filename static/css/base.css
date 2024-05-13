@@ -120,6 +120,10 @@ footer {
 
 
 @media (max-width: 768px) {
+    * {
+        font-size: 1rem;
+    }
+
     .search-form {
         display: none;
     }
@@ -128,5 +132,9 @@ footer {
     }
     .header-links .btn-link {
         padding: 0;
+    }
+
+    .mobile-searchbar {
+        margin-bottom: 15px;
     }
 }
