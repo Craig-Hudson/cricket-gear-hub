@@ -26,10 +26,10 @@
                         <tbody>
                             {% for item in cart_items %}
                                 <tr class="flex-col">
-                                    <td>{{ item.product.name }}</td>
+                                    <td>{{ item.product.name }} {% if item.size %} ({{ item.size }}) {% endif %} </td>
                                     <td>{{ item.product.price }}</td>
                                     <td>
-                                        <form action="{% url 'update_cart' item.item_key %}" method="post">
+                                        <form action="{% url 'update_cart' item.item_key %}" method="POST">
                                             {% csrf_token %}
                                             <input type="number" name="quantity" value="{{ item.quantity }}">
                                             <button type="submit">Update</button>
