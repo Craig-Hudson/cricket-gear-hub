@@ -10,12 +10,13 @@ from checkout.models import Order
 @login_required
 def profile(request):
     """ Display the user's profile. """
-     # Check if the profile being accessed belongs to the logged-in user
+    profile = get_object_or_404(UserProfile, user=request.user)
+
+    # Check if the profile being accessed belongs to the logged-in user
     if request.method == 'GET' and request.user != profile.user:
         messages.error(request, 'You are not authorized to view this profile.')
         return redirect(reverse('home'))
 
-    profile = get_object_or_404(UserProfile, user=request.user)
 
     if request.method == 'POST':
         form = UserProfileForm(request.POST, instance=profile)
