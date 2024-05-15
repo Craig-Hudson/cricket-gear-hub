@@ -64,17 +64,17 @@
             {% for product in featured_products %}
             <div class="col-lg-3 col-md-6 mb-4">
                 <div class="card">
-                    {% if product.image %}
-                        <img src="{{ product.image.url }}" class="card-img-top img-fluid" alt="{{ product.name}}">
-                    {% else %}
-                        <img class="img-fluid" src="{% static 'images/no-image-icon-23489.webp' %}" alt="No photo available image">
-                    {% endif %}
+                    <a href="{% url 'individual_product' product.id %}">
+                        {% if product.image %}
+                            <img src="{{ product.image.url }}" class="card-img-top img-fluid" alt="{{ product.name}}">
+                        {% else %}
+                            <img class="img-fluid" src="{% static 'images/no-image-icon-23489.webp' %}" alt="No photo available image">
+                        {% endif %}
+                    </a>
                     <div class="card-body">
                         <p class="card-text">{{ product.name }}</p>
                         <hr>
-                        <button type="button" class="btn btn-dark btn-sm tetx-white" data-toggle="modal" data-target="#productModal{{ product.id }}">
-                            View Description
-                        </button>
+                        <p class="card-text font-weight-bold cursor-pointer" data-toggle="modal" data-target="#productModal{{ product.id }}">{{ product.description|truncatewords:3 }}</p>
                         <hr>
                         <p class="cart-text pt-2">£{{ product.price }}</p>
                     </div>

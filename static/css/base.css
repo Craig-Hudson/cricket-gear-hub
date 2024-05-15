@@ -105,6 +105,9 @@ https://github.com/Code-Institute-Solutions/boutique_ado_v1/blob/b5e178737596a1a
 	color: #17a2b8;
 }
 
+.cursor-pointer {
+    cursor: pointer;
+}
 
 footer {
     margin-top: auto;
