@@ -10,8 +10,9 @@ from checkout.models import Order
 @login_required
 def profile(request):
     """ Display the user's profile. """
-    if not request.user.is_superuser:
-        messages.error(request, 'Sorry, only store owners can do that.')
+     # Check if the profile being accessed belongs to the logged-in user
+    if request.method == 'GET' and request.user != profile.user:
+        messages.error(request, 'You are not authorized to view this profile.')
         return redirect(reverse('home'))
 
     profile = get_object_or_404(UserProfile, user=request.user)
