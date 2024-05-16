@@ -4,6 +4,9 @@ from django.contrib import messages
 from django.conf import settings
 from decimal import Decimal
 
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
+
 from .forms import OrderForm
 from cart.contexts import cart_contents
 from .models import Order, OrderLineItem
@@ -153,7 +156,7 @@ def checkout(request):
 
     return render(request, template, context)
 
-   
+
 def checkout_success(request, order_number):
     """
     Handle successful checkouts
@@ -182,9 +185,20 @@ def checkout_success(request, order_number):
             if user_profile_form.is_valid():
                 user_profile_form.save()
 
+    # Send confirmation email
+    context = {
+        'order': order,
+    }
+    subject = render_to_string(
+            'checkout/confirmation_emails/confirmation_email_subject.txt', context)
+    body = render_to_string('checkout/confirmation_emails/confirmation_email_body.txt', context)
+    from_email = settings.DEFAULT_FROM_EMAIL
+    cust_email = order.email
+    send_mail(subject, body, from_email, [cust_email])
+
     messages.success(request, f'Order successfully processed! \
         Your order number is {order_number}. A confirmation \
-        email will be sent to {order.email}.')
+        email has been sent to {order.email}.')
 
     if 'cart' in request.session:
         del request.session['cart']
@@ -195,3 +209,4 @@ def checkout_success(request, order_number):
     }
 
     return render(request, template, context)
+
