@@ -21,6 +21,7 @@
                                 <th>Price</th>
                                 <th>Quantity</th>
                                 <th>Subtotal</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -37,7 +38,7 @@
                                     </td>
                                     <td>{{ item.subtotal }}</td>
                                     <td>
-                                        <a href="{% url 'remove_from_cart' item.item_key %}">Remove</a>
+                                        <button type="button" class="btn btn-link text-danger" data-toggle="modal" data-target="#confirmRemoveModal{{ item.item_key }}">Remove</button>
                                     </td>
                                 </tr>
                             {% endfor %}
@@ -72,7 +73,34 @@
         </div>
     </div>
 </div>
+
+<!-- Modals for each item -->
+{% for item in cart_items %}
+<div class="modal fade" id="confirmRemoveModal{{ item.item_key }}" tabindex="-1" role="dialog" aria-labelledby="confirmRemoveModalLabel{{ item.item_key }}" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmRemoveModalLabel{{ item.item_key }}">{{ item.product.name}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to remove {{ item.product.name }} from your cart?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <form action="{% url 'remove_from_cart' item.item_key %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Remove</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
 {% endblock %}
+
 
 
 {% block extra_js %}
