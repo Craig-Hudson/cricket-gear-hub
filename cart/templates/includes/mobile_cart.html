@@ -11,7 +11,7 @@
                             
                             <div class="col-md-8">
                                 <div class="card-body">
-                                    <h5 class="card-title">{{ item.product.name }}</h5>
+                                    <h5 class="card-title">{{ item.product.name }}{% if item.size %} ({{ item.size }}) {% endif %} </h5>
                                     <p class="card-text">Price: £{{ item.product.price }}</p>
                                     <form action="{% url 'update_cart' item.item_key %}" method="post">
                                         {% csrf_token %}
