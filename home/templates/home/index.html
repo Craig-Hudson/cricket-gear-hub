@@ -62,7 +62,7 @@
         <h2 class="text-center mb-4">Featured Products</h2>
         <div class="row">
             {% for product in featured_products %}
-            <div class="col-lg-3 col-md-6 mb-4">
+            <div class="col-lg-3 col-6 mb-4">
                 <div class="card">
                     <a href="{% url 'individual_product' product.id %}">
                         {% if product.image %}
