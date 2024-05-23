@@ -25,13 +25,19 @@ This includes using chrome developer tools to test for responsiveness and for ge
 
 ### Lighthouse
 
-- Desktop Lighthouse report perfect scores all round!
-
-![Desktop Lighthouse report](documentation/lighthouse/lighthouse-desktop.png)
+![Desktop Lighthouse report](./readme_media/lighthouse_reports/lighthouse_desktop.png)
 
 - Mobile lighthouse report 
 
-![Mobile lighthouse report](documentation/lighthouse/lighthouse-mobile.png)
+![Mobile lighthouse report](./readme_media/lighthouse_reports/lighthouse_mobile.png)
+
+### Wave report
+
+- Home page wave report
+
+![Home page wave report](./readme_media/wave_report/wave_report.png)
+
+The reports for every page are like the above image, coming back with no errors, or contrast errors, and only coming back with two alerts one being about a skipped heading level, which doesnt concern me as the heading levels on each page are still in order
 
 ### HTML validator
 
@@ -42,14 +48,22 @@ A couple of my html files had errors which have now also been fixed and are all 
 
 ### CSS validator
 
-- My css has come back with no errors and no warnings.
+- **base.css validation**
 
-![CSS Validation](documentation/validation/css-validation.png)
+![Base CSS Validation](./readme_media/validation/base_css_validation.png)
+
+- **Checkout.css validation**
+
+![Checkout CSS validtion](./readme_media/validation/checkout_css_validation.png)
+
+- **Profile.css validation**
+
+![profile CSS validation](./readme_media/validation/profile_css_validation.png)
 
 ### JavaScript Validator
 
 
-## wave reports
+
 
 
 ## Manual Testing
