@@ -52,9 +52,11 @@
     <header class="container-fluid mt-3 mb-3">
         <div class="row align-items-center">
             <div class="col-lg-3 d-flex justify-content-center">
-                <a href="{% url 'home' %}" aria-label="Home page">
-                    <img src="{% static 'images/cricket_gear_hub_logo.webp'%}" class="img-fluid" alt="cricket gear hub logo">
-                </a>
+                <h1>
+                    <a href="{% url 'home' %}" aria-label="Home page">
+                        <img src="{% static 'images/cricket_gear_hub_logo.webp'%}" class="img-fluid" alt="cricket gear hub logo">
+                    </a>
+                </h1>
             </div>
             <div class="col-lg-6 col-12 d-flex justify-content-center mobile-searchbar">
                 <form method="GET" action="{% url 'products' %}" class="form-inline d-flex justify-content-center">
@@ -126,7 +128,7 @@
     </footer>
 
     {% block postloadjs %}
-        <script type="text/javascript">
+        <script>
             $('.toast').toast('show');
         </script>
     {% endblock %}

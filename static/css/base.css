@@ -13,11 +13,11 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'playfair-display';
+    font-family: 'playfair-display', serif;
 }
 
 .container {
-    flex-grow: 1 1 auto;
+    flex: 1 1 auto;
 }
 
 .carousel-item img {
