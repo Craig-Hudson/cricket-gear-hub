@@ -48,42 +48,8 @@ A couple of my html files had errors which have now also been fixed and are all 
 
 ### JavaScript Validator
 
-- Home page JavaScript validation on JShint
-
-![JavaScript validation](documentation/validation/javascript-validation.png)
-
-- As you can see if the above image it's coming back with two info's
-
-- First one is about emailJS not being defined, I followed along the code institute tutorial for
-  setting up emailJS and emailJS is initialized in my base.html file starting on line 11.
-  
-- Second is the function sendMail being unused, but this is called on line 7 in my contact.html page
 
 ## wave reports
-
-- Home Page
-
-![Home page](documentation/wave-reports/home-page-wave.png)
-
-- Browse Books Page
-
-![Browse Books Page](documentation/wave-reports/browse-books-wave.png)
-
-- Contact page
-
-![Contact Page](documentation/wave-reports/contact-page-wave.png)
-
-- Login page
-
-![Login Page](documentation/wave-reports/login-wave.png)
-
-- Register page
-
-![Register page](documentation/wave-reports/register-page-wave.png)
-
-- Review Page
-  
-![Review page](documentation/wave-reports/review-page.png)
 
 
 ## Manual Testing
@@ -195,45 +161,11 @@ Testing was done on the following devices and browsers
 | Different error messages 404, 500, 503 to appear depending on what the error is | Different error number messages to appear depending on what is broken. | break website to display different error message | Different error messages appeared | Pass |
 | Return home button | Taken user to home page | Click home page button | I was taken to the home page | Pass |
 
-- **Add Book Page**
+- **Checkout Page**
   
 | Feature  | Expected outcome  | Testing performed  | Result  | Pass/Fail  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-| Input field user prompts if left blank | For the user to be prompted that the input fields need filling in, apart from the image url input field | Leave input fields blank, and fill in one by one | I was prompted to fill in input field on all but the image url as expected | Pass |
-| Add book button | Once the user has filled in all input fields, they will be taken to the browse books page, where there book should be newly displayed, and it should also appear on the user's profile page, under book added. | Fill out add book form, and click add book | I was taken to the browse books page where the book I just added is displayed, It also was displayed under books added on my profile page | Pass |
-
-- **Edit Book Page**
-  
-| Feature  | Expected outcome  | Testing performed  | Result  | Pass/Fail  |
-| ------------ | ------------ | ------------ | ------------ | ------------ |
-| Book details already stored in input fields from the database. | When I arrive on the edit book page, I will expect the book details for that certain book to be already there. | Goto edit book page | I checked two books, and the details for that certain book were already in the input fields. | Pass |
-| User to be promoted if they leave input fields blank when editing. | User to be prompted to fill in a certain input field if left blank. | Leave input fields blank. | I was prompted to fill in the input field when I left them blank. | Pass |
-
-- **Add Review Page**
-  
-| Feature  | Expected outcome  | Testing performed  | Result  | Pass/Fail  |
-| ------------ | ------------ | ------------ | ------------ | ------------ |
-| Form Input fields | for user to be prompted to fill in both input fields. | Leave input fields blank to see if a prompt occurs. | When I left the input fields blank I was prompted to if fill out both input fields. | Pass |
-| Add review button | Once the user clicks on the add review button they should be taken back to the review page for the certain book they left their review on, their new review will be displayed, and it will also be displayed in the users profile, under reviews added. | Click add review button. | I was directed to the review page for the book I left a review on, I also went over to my profile, to find that my review was also added under reviews added. | Pass |
-
-- **Edit Review Page**
-  
-| Feature  | Expected outcome  | Testing performed  | Result  | Pass/Fail  |
-| ------------ | ------------ | ------------ | ------------ | ------------ |
-|  Book details already stored in input fields from the database. | Review details already stored in the input fields. | Go to edit review page to see if the review details are already stored. | When I went to the edit review page the review details were already stored in the form input fields | Pass |
-| Form Input fields | for user to be prompted to fill in both input fields.  | leave input field blank. | When I left any of the input fields blank, I was prompted to fill them out. | Pass |
-| Edit review button | Once user has clicked button, It should refresh page, flash a message to the user, confirming review has been edited, pre populate with new data. | Click edit review button. | Once I clicked the edit review button the page reloaded, and a flash messaged appeared confirming that the editing had been completed, and the new data was pre populated in the form fields | Pass |
-
-- **Review Page**
-  
-| Feature  | Expected outcome  | Testing performed  | Result  | Pass/Fail  |
-| ------------ | ------------ | ------------ | ------------ | ------------ |
-| Add review button | Once clicked, it should take user to the add review page. | Click button | I was taken to the add review page. | Pass |
-
-- **Profile Page**
-  
-| Feature  | Expected outcome  | Testing performed  | Result  | Pass/Fail  |
-| ------------ | ------------ | ------------ | ------------ | ------------ |
-| Delete Buttons on Reviews and Books. | Once A user clicks on the delete button, a pop up modal should appear giving the user an option of cancelling the delete, or deleting the review or book. | Click delete button. | Pop up modal popped up every time a delete button was clicked. | Pass |
-| Cancel button on modal. | To close modal down. | Click cancel button. | Modal closed | Pass |
-| Delete button on modal. | Once the delete button has been clicked on the modal, it will close the modal down, and it will delete the review or book the user has chosen to delete, note this will delete them everywhere on the website. | Click delete modal button. | Once I deleted a review and deleted a book, they disappeared everywhere on the website. | Pass |
+| Delivery and user details form | when required fields left empty to leave error message for user | Leave fieldd empty | Error messages occured | Pass |
+| Card information validation | Enter incorrect card details and should show user error message | Enter wrong card informatin | Erorr message shown | Pass |
+| adjust bag button | Take user to cart page | Click button | Took user to cart page | Pass |
+| Complete order button | Once all details are filled in the button should load a spinner while transaction is procceesing and then take user to a confirmation of order page | Click button | Spinner loaded and I was taken to the confirmation page | Pass |
