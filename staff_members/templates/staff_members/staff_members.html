@@ -3,17 +3,47 @@
 
 {% block content %}
 <div class="container">
-    <h2>Meet The Team</h2>
+    <h2 class="text-center font-weight-bold">Meet The Team</h2>
     <!-- Display staff members here -->
     <div class="row">
         {% for staff_member in staff_members %}
-        <div class="col-6 col-md-4 mb-4">
+        <div class="col-6 col-md-4 col-lg-3 mb-4">
             <div class="card">
-                <img src="{{ staff_member.profile_picture.url }}" class="img-fluid card-img-top" alt="{{ staff_member.name }}">
+                {% if staff_members.profile_picture %}
+                <img src="{{ staff_member.profile_picture.url }}" class="img-fluid card-img-top rounded" alt="{{ staff_member.name }}">
+                {% else %}
+                <img src="{% static 'images/no-image-icon-23489.webp' %}" class="img-fluid card-img-top rounded" alt="no image available">
+                {% endif %}
                 <div class="card-body">
                     <h5 class="card-title">{{ staff_member.first_name }} {{ staff_member.last_name }}</h5>
                     <p class="card-text"><span class="font-weight-bold">Job Title:</span> {{ staff_member.job_title }}</p>
-                    <p class="card-text"><span class="font-weight-bold">Bio:</span> {{ staff_member.bio }}</p>
+                    <!-- Display the first three words of the bio initially -->
+                    {% if staff_member.bio|wordcount >= 3 %}
+                    <p class="card-text bio" data-toggle="modal" data-target="#bioModal{{ staff_member.id }}">
+                        <a href="#" class="bio-link text-dark"><span class="font-weight-bold">Bio:</span> {{ staff_member.bio|truncatewords:3 }}</a>
+                    </p>
+                    <!-- Modal for the full bio -->
+                    <div class="modal fade" id="bioModal{{ staff_member.id }}" tabindex="-1" role="dialog" aria-labelledby="bioModalLabel{{ staff_member.id }}" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="bioModalLabel{{ staff_member.id }}">{{ staff_member.first_name}} {{staff_member.last_name}}'s Bio</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    {{ staff_member.bio }}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% else %}
+                    <p class="card-text">{{ staff_member.bio }}</p>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -22,7 +52,9 @@
 
     <!-- Add staff member button for superusers -->
     {% if user.is_superuser %}
+    <div class="mb-4">
         <a href="{% url 'add_staff_member' %}" class="btn btn-dark text-white">Add Staff Member</a>
+    </div>
     {% endif %}
 </div>
 {% endblock %}
