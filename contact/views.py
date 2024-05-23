@@ -3,6 +3,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 from .forms import ContactForm
 
+
 def contact_us(request):
     """
     Render the contact form page. If the form is submitted successfully,
@@ -15,15 +16,19 @@ def contact_us(request):
             form.save()
             # Send email notification
             subject = 'New Contact Message'
-            message = f'A new message has been received from {form.cleaned_data["name"]}.'
+            message = (
+                f'A new message has been received from \
+                {form.cleaned_data["name"]}.'
+            )
             sender = form.cleaned_data["email"]
-            recipient = [settings.EMAIL_HOST_USER] 
+            recipient = [settings.EMAIL_HOST_USER]
             send_mail(subject, message, sender, recipient, fail_silently=False)
-            return redirect(reverse('contact_success'))  # Redirect to a success page
+            return redirect(reverse('contact_success'))
     else:
         form = ContactForm()
-        
+
     return render(request, 'contact/contact.html', {'form': form})
+
 
 def contact_success(request):
     """

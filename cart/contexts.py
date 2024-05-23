@@ -3,6 +3,7 @@ from django.conf import settings
 from django.shortcuts import get_object_or_404
 from products.models import Product, Size
 
+
 def cart_contents(request):
     cart_items = []
     total = Decimal('0')
@@ -12,33 +13,33 @@ def cart_contents(request):
 
     for item_key, quantity in cart.items():
         if '_' in item_key:
-            product_id, size_id = item_key.split('_')  # Split product ID and size ID
+            product_id, size_id = item_key.split('_')
             product = get_object_or_404(Product, pk=product_id)
-            size = get_object_or_404(Size, pk=size_id)  
+            size = get_object_or_404(Size, pk=size_id)
         else:
             product = get_object_or_404(Product, pk=item_key)
             size = None
 
         subtotal_for_item = quantity * product.price
-        total += subtotal_for_item  
+        total += subtotal_for_item
         product_count += quantity
         cart_items.append({
             'item_key': item_key,
             'quantity': quantity,
             'product': product,
-            'size': size, 
+            'size': size,
             'subtotal': subtotal_for_item,
-            'product_name': product.name,  
-            'product_price': product.price,  
+            'product_name': product.name,
+            'product_price': product.price,
         })
 
     # Calculate grand total
     grand_total = total + delivery
 
     context = {
-        'cart_items' : cart_items,
-        'total' : total,
-        'product_count' : product_count,
+        'cart_items': cart_items,
+        'total': total,
+        'product_count': product_count,
         'delivery': delivery,
         'grand_total': grand_total,
     }

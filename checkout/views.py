@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
+from django.shortcuts import (render, redirect, reverse,
+                              get_object_or_404, HttpResponse)
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
@@ -16,6 +17,7 @@ from profiles.models import UserProfile
 
 import stripe
 import json
+
 
 @require_POST
 def cache_checkout_data(request):
@@ -61,7 +63,7 @@ def checkout(request):
             'street_address2': request.POST['street_address2'],
             'county': request.POST['county'],
         }
-        
+
         order_form = OrderForm(form_data)
         if order_form.is_valid():
             order = order_form.save(commit=False)
@@ -71,7 +73,12 @@ def checkout(request):
             order.save()
             for item_key, item_data in cart.items():
                 try:
-                    product_id, size_id = item_key.split('_') if '_' in item_key else (item_key, None)
+                    if '_' in item_key:
+                        product_id, size_id = item_key.split('_')
+                    else:
+                        product_id = item_key
+                        size_id = None
+
                     product = get_object_or_404(Product, pk=product_id)
                     if size_id is not None:
                         size = get_object_or_404(Size, pk=size_id)
@@ -83,36 +90,40 @@ def checkout(request):
                             order=order,
                             product=product,
                             quantity=item_data,
-                            product_size=size,  # Assign size to the order line item
+                            product_size=size,
                         )
                         order_line_item.save()
                     else:
-                        for size_key, quantity in item_data['items_by_size'].items():
+                        items_by_size = item_data['items_by_size']
+                        for size_key, quantity in items_by_size.items():
                             size = get_object_or_404(Size, pk=size_key)
                             order_line_item = OrderLineItem(
                                 order=order,
                                 product=product,
                                 quantity=quantity,
-                                product_size=size,  # Assign size to the order line item
+                                product_size=size,
                             )
                             order_line_item.save()
                 except Product.DoesNotExist:
                     messages.error(request, (
-                        "One of the products in your bag wasn't found in our database. "
+                        "One of the products in your bag"
+                        "wasn't found in our database. "
                         "Please call us for assistance!")
                     )
                     order.delete()
                     return redirect(reverse('view_cart'))
 
             request.session['save_info'] = 'save-info' in request.POST
-            return redirect(reverse('checkout_success', args=[order.order_number]))
+            return redirect(reverse('checkout_success',
+                            args=[order.order_number]))
         else:
             messages.error(request, 'There was an error with your form. \
                 Please double check your information.')
     else:
         cart = request.session.get('cart', {})
         if not cart:
-            messages.error(request, "There's nothing in your bag at the moment")
+            messages.error(request,
+                           "There's nothing in your bag at the moment")
             return redirect(reverse('products'))
 
         current_bag = cart_contents(request)
@@ -190,8 +201,10 @@ def checkout_success(request, order_number):
         'order': order,
     }
     subject = render_to_string(
-            'checkout/confirmation_emails/confirmation_email_subject.txt', context)
-    body = render_to_string('checkout/confirmation_emails/confirmation_email_body.txt', context)
+            'checkout/confirmation_emails/confirmation_email_subject.txt',
+            context)
+    body = render_to_string(
+        'checkout/confirmation_emails/confirmation_email_body.txt', context)
     from_email = settings.DEFAULT_FROM_EMAIL
     cust_email = order.email
     send_mail(subject, body, from_email, [cust_email])

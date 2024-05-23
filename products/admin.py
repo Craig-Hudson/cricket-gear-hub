@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import Product, Category, Size, Review
 
+
 class ProductAdmin(admin.ModelAdmin):
     list_display = (
         'name',
