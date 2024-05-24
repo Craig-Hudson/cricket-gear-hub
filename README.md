@@ -1,9 +1,9 @@
 # Readers Realm
 
 ------------
-[Link to live site here](https://readers-realm-40212841c1a0.herokuapp.com/  "Link to live site here")
+[Link to live site here](https://cricket-gear-hub-f9339f25dfca.herokuapp.com/  "Link to live site here")
 
-![Am I responsive image](./documentation/readme/am-i-responsive-m3.png)
+![Am I responsive image](./readme_media/design_images/am_i_responsive.png)
 
 ## Table of Contents
 
@@ -67,6 +67,10 @@ If a user want's to be able to add a book to display on the website they must be
     4. As a returning visitor I want to be able to reset my password Incase I forget it.
    
   - **Frequent visitor goals**
+    1. As a frequent visitor, I want the e-commerce site to be mobile-friendly, so I can shop easily from my smartphone or tablet.
+    2. As a frequent visitor, I want to leave reviews for products I have purchased, so I can share my experience with other customers.
+    3. As a frequent visitor, I want to read reviews from other users, so I can make informed purchasing decisions.
+    4. As a frequent visitor, I want my shopping cart to be saved across sessions, so I don't lose my selected items if I leave the site.
   
 
 ### Design
@@ -75,8 +79,26 @@ If a user want's to be able to add a book to display on the website they must be
 ![Colour Pallette](./readme_media/design_images/palette.png)
 
 #### typography
+I have used the following for the majority of the text font-family: 'EB Garamond', serif;
+So I've used EB garamond from google font's and with the backup of serif incase that fails/
+
+And for the headings of the website I have used the playfair-display font again used from google fonts.
 
 #### Structure
+
+When users land on the website they will be taken to the home page where all users are free to browse, users can access all of the websites pages (apart from the site owners pages for crud implementation e.g adding products / staff members etc).
+From the home page users can access and view all the products the site has to offer, they can also view the current staff team, and they can also contact the team via email.
+
+On the top right of the home page users can access their profile page, contacting the team and view their carts.
+and below this are the links for all of the products on the site which are spilt into different categories, and then withing each category users can either view them in price order, rating order, or just view each type of category of product, there is also a link for all products where users can view every product on the page.
+
+Users can then click on the images of products to view the individual product itself where users can then view descriptions, reviews and if they wanted to add the item to the cart from here.
+
+Users have to be logged in to be able to leave a review.
+
+Once users have added products to their cart and ready to pay for their products they can then click on their cart, and they will then see a button to click to proceed to checkout, which they can then fill out the relevant details and proceed to payment, after successful payment is made users will then be taken to a checkout success page thank them for their purchase and provides details of the order they placed, and gives uers the option to easily return back to the home page where nessacary.
+
+
   
 #### Imagery
 
@@ -294,25 +316,222 @@ If a user want's to be able to add a book to display on the website they must be
 
 
 
-### Database schema
+## Database schema
 
 ![database schema](./readme_media/data_schema/data_schema.png)
 
-#### Final data schema
+### Final data schema
+
+![Final database schema](./readme_media/data_schema/final_db_diagram.png)
+
+### Differences Between the Database Schemas
+#### Overview
+This section outlines the differences between two versions of the database schema for our application. The first schema represents an initial design with fewer tables and relationships, while the second schema is more comprehensive, including additional tables and refined relationships to better capture the complexity of the application's data model.
+
+##### Initial Schema
+The initial schema contains the following tables:
+
+users
+products
+orders
+order_items
+addresses
+UserProfile
+Table Details:
+users
+
+Contains basic user information such as username, email, password, first name, and last name.
+Each user can have multiple addresses and orders.
+
+**products**
+
+Stores product details like name, description, price, image URL, size, and availability.
+orders
+
+Captures order-related information including the user who placed the order, the total amount, created date, and Stripe charge ID.
+
+**order_items**
+
+Represents items within an order, linking orders to products with additional fields like quantity and price.
+addresses
+Holds user address information, related to the user table via user_id.
+
+**UserProfile**
+
+Contains profile-specific information for users, linking to users and addresses.
+
+##### Comprehensive Schema
+The comprehensive schema includes the following tables, which extend the initial design:
+
+users
+products
+orders
+orderlineitems (renamed from order_items)
+user_profiles (renamed from UserProfile)
+addresses
+categories
+sizes
+product_sizes
+reviews
+contactmessages
+staffmembers
+Table Details:
+users
+
+Similar to the initial schema but with additional fields for user status (is_staff, is_active) and date joined.
+
+**products**
+
+Includes a foreign key to categories and an association with sizes through the product_sizes table.
+Stores product-related information including category, price, description, image, and availability status.
+
+**orders**
+
+Enhanced to include more detailed fields such as delivery cost, order total, and grand total.
+Links to user_profiles instead of directly to users.
+
+**orderlineitems**
+
+Renamed from order_items to better reflect the naming convention and includes a product_size field.
+
+**user_profiles**
+
+Stores user profile information, linking to users and including default address details.
+addresses
+Expanded to store more detailed address information and linked to user_profiles.
+
+**categories**
+
+New table to categorize products, including a friendly name field.
+
+**sizes**
+
+New table to handle product sizes.
+
+**product_sizes**
+
+Intermediate table to handle many-to-many relationships between products and sizes.
+
+**reviews**
+
+New table to store product reviews, linking to products and optionally to users.
+
+**contactmessages**
+
+New table to capture contact messages from users or customers.
+
+**staffmembers**
+
+New table to store staff member information, including profile picture and bio.
+
+Key Differences
+Enhanced User and Profile Management
+
+The comprehensive schema includes a more detailed users table and separates user profile information into the user_profiles table.
+Adds fields for user status and date joined.
+Address Management
+
+Both schemas include an addresses table, but the comprehensive schema provides more fields and links to user_profiles for default address details.
+Product Categorization and Sizes
+
+The comprehensive schema introduces categories and sizes tables to better organize products.
+Adds a product_sizes table to manage the many-to-many relationship between products and sizes.
+Order and Order Items
+
+The orders table in the comprehensive schema includes more detailed financial information.
+The order_items table is renamed to orderlineitems and includes an additional product_size field.
+Additional Tables
+
+The comprehensive schema adds reviews, contactmessages, and staffmembers tables to capture more aspects of the application's functionality.
+
+**Summary**
+The comprehensive schema provides a more robust and detailed representation of the application's data model, supporting enhanced functionality and more complex relationships between entities. This refined design ensures better data integrity, organization, and scalability for future enhancements.
 
 
-### CRUD
+## Crud 
 
-#### Step 1 Create
+### Step 1 Create
+For CRUD implementation, we have several features throughout the website:
+
+Adding Products: Superusers can add new products from the product management link. They can input all necessary details such as name, description, image, sizes, and quantity.
+
+Adding Staff Members: Superusers can add new staff members via the website. They can provide details like first name, last name, job title, bio, and profile picture.
+
+Creating Reviews: Regular users can create reviews for products. They can rate the product and provide comments based on their experience with it.
+
+### Step 2 Read
+Users can view:
+
+Product Listings: Users can browse through a list of available products, view their details such as name, description, and image, and see reviews and ratings provided by other users.
+
+Individual Product Pages: Users can access detailed information about a specific product, including its name, description, image, available sizes, and reviews.
+
+Staff Members Page: Users can see a list of staff members along with their names, job titles, and brief bios.
+
+### Step 3 Update
+Superusers can update:
+
+Product Details: They can edit existing product details such as name, description, image, sizes, and quantity.
+
+Staff Member Details: Superusers have the ability to modify staff members' information, including their names, job titles, bios, and profile pictures.
+
+Reviews: only logged in user's can add/edit/delete reviews, superuser also has the ability to edit reviews where appropiate.
+
+### Step 4 Delete
+Superusers can delete:
+
+Products: They have the authority to remove products from the system entirely, along with all associated details and reviews.
+
+Staff Members: Superusers can delete staff members from the database, removing their information from the staff members' list.
+
+Reviews: Superusers can delete inappropriate or irrelevant reviews submitted by users. This action removes the review from the product's page and the database.
+
+## Stripe
 
 
-#### Step 2 Read
+When testing Stripe payment integrations, you can use specific test card numbers provided by Stripe. These card numbers simulate various payment scenarios. Here are the commonly used test card numbers for successful and unsuccessful purchases:
 
-#### Step 3 Update
+**Successful Purchase**
 
-#### Step 4 Delete
+Visa: 4242 4242 4242 4242
+Any CVC number
+Any future expiration date
+
+**Unsuccessful Purchase**
+
+Card Declined: 4000 0000 0000 9995
+Insufficient Funds: 4000 0000 0000 9995
+Incorrect CVC: 4000 0000 0000 0127
+Expired Card: 4000 0000 0000 0069
+Processing Error: 4000 0000 0000 0119
 
 ## Features
+
+### Home page 
+
+![Homepage](./readme_media/site_images/home_page.png)
+
+### All products page
+
+![All products](./readme_media/site_images/all_products.png)
+
+### individual products page
+
+![individual products](./readme_media/site_images/individual_products.png)
+
+### Cart page
+
+![Cart page](./readme_media/site_images/cart.png)
+
+### Checkout page 
+
+![Checkout page](./readme_media/site_images/Checkout.png)
+
+### Checkout Success page 
+
+![Checkout success](./readme_media/site_images/checkout_success.png)
+
+
 
 ## Technologies Used
 
@@ -362,108 +581,294 @@ Currently There is no known bugs
 
 ### Deployment
 
-Old Heroku Deployment Instructions
-The site is deployed using Heroku. To deploy to Heroku:
+The project is deployed using Heroku. To deploy the project:
 
-1. To successfully deploy on Heroku we first need to create some files: a requirements.txt file and a Procfile.
+#### ** Live Database**
 
-2. The requirements.txt file contains all the applications and dependencies that are required to run the app. To create the requirements.txt file run the following command in the terminal:
+SQL Lite can be used in local development, however for live deployment we must use an online external database. I have chosen Elephant SQL
 
-    ```bash
-    pip3 freeze --local > requirements.txt
-    ```
+1. Go to the [ElephantSQL](https://www.elephantsql.com/) dashboard and click 'new instance button' .
+2. Name the plan, select tiny turtle plan (this is the free plan) and choose the region that is closest to you then click the review button.
+3. Check the details are all correct and then click create instance in the bottom right.
+4. Go to the dashboard and select the database just created.
+5. Copy the URL
 
-3. The Procfile tells Heroku which files run the app and how to run it. To create the Procfile run the following command in the terminal:
+#### **Heroku setup**
 
-    ```bash
-    echo web: python app.py > Procfile
-    ```
+  1. From the [Heroku dashboard](https://dashboard.heroku.com/), click the new button in the top right corner and select create new app.
+  2. Name your app, select the region that is closest to you and then click the create app button bottom left.
+  3. Open the settings tab and create a new config var of `DATABASE_URL` and paste the database URL you copied from elephantSQL into the value.
 
-    NOTE: The Procfile uses a capital P and doesn't have a file extension on the end.
+#### **Actions in IDE**
 
-4. If the Procfile has been created correctly it will have the Heroku logo next to it. It is also important to check the Procfile contents, as sometimes on creation a blank line will be added at the end of the file. This can sometimes cause problems when deploying to Heroku, so if the file contains a blank line at the end, delete this and save the file. Make sure to save both these files and then add, commit and push them to GitHub.
+1. Install dj_database_url and psycopg2 by typing 'pip3 install dj_database_url==0.5.0 psycopg2'   
 
-5. Login (or sign up) to [Heroku.com](https://www.heroku.com).
+2. Type pip3 freeze > requirements.txt   
 
-6. Click the new button and then click create new app.
+3. In settings.py underneath import os, add `import dj_database_url`
 
-7. You will then be asked to give your app a name (these must be unique so you cannot reuse bookworm) and select a region. Once these are completed click create app.
+4. Under 'DATABASES', comment out the existing code. Type: DATABASES = { 'default': dj_database_url.parse('elephantsql-db-url-here')  } 
 
-8. You will now need to connect the Heroku app to the GitHub repository for the site. Select GitHub in the deployment section, find the correct repository for the project and then click connect.
+5. In the terminal, type 'python manage.py showmigrations
 
-9. Once the repository is connected, you will need to provide Heroku some config variables it needs to build the app. Click on the settings tab and then click reveal config vars button. You will now need to add the environment key/value variables that were used in the env.py file:
+6. You should see a list of migrations that are unchecked. If so, type 'python manage.py makemigrations' followed by 'python manage.py migrate'   
 
-    | KEY | VALUE |
-    | :-- | :-- |
-    | IP | 0.0.0.0 |
-    | PORT | 5000 |
-    | SECRET_KEY | ANY_SECRET_KEY* |
-    | DB_URL | postgresql:///readersrealm |
-    | DEBUG | TRUE** |
+7. Create a superuser for the new database by typing 'python manage.py createsuperuser. Follow the instructions and note the details  
 
-    *Denotes a value that is specific to your app.
+8. Replace your DATABASE code (including commented-out code) with the following:
 
-    **This is set to true to enable us to see any bugs on the live site. ~~Please change to FALSE after deployment.~~
+    if 'DATABASE_URL' in os.environ:
+        DATABASES = {
+          'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+        }
+    else:
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.sqlite3',
+                'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
+          }
+        }
+   
+10. Install gunicorn by typing 'pip3 install gunicorn' followed by 'pip3 freeze > requirements.txt'
+    
 
-10. You're now ready to click the enable automatic deploys and create button. Heroku will start building the app.
+11. Create a file called 'Procfile' in the root directory and add this line 'web: unicorn app_name.wsgi:application'
 
-11. As this project utilizes a relational database, there are a few more steps to set this up.
+12. Ensure both your IDE and Heroku in the Allowed Hosts:
+    
+    ALLOWED_HOSTS = ['{heroku site URL}', 'localhost' ]
 
-12. On the heroku dashboard go to resources tab and then select add-ons. You will need to search for and select heroku postgres. For this project the hobby dev free tier is fine.
+13. Save, commit and push all changes to GitHub
 
-13. Go back into settings and reveal config vars. You should now see a new key called DATABASE_UL and the value should have been pre-populated.
+#### **Amazon Web Service for static files**
 
-14. We will now need to go the more button on the dashboard and select run console. This is where we will set up the tables in the database we have just created.
+Access your AWS account:
 
-15. Type python3 and then once the python interpreter opens, we can run the following:
+Go to https://aws.amazon.com.
+Click "Manage My Account" (top right) to sign up or log in.
+Navigate to the S3 service.
+Create a storage bucket:
 
-    ```bash
-    from readersrealm import db
-    db.create_all()
-    exit()
-    ```
+Name the bucket after your project.
+Choose your nearest region.
+Under "Object Ownership," select "ACLs enabled" -> "Bucket owner preferred."
+Under "Block Public Access," uncheck the box and acknowledge to make the bucket public.
+Click "Create bucket."
+Enable static web hosting:
 
-16. Now that the relational database has been set up and the tables created, we can now click open app and the Readers realm application should now open in a new tab.
+Open the newly created bucket.
+Go to the "Properties" tab.
+Find "Static web hosting" and click "Enable."
+Set "Index document" to index.html and "Error Document" to error.html (these files won't be used).
+Configure bucket permissions:
+
+Open the "Permissions" tab.
+Copy the bucket's ARN (Amazon Resource Name).
+In the "Bucket policy" section, click "Edit" -> "Policy generator."
+Set the following:
+Policy Type: S3 Bucket Policy
+Principal: * (allow all)
+Actions: Get Object
+ARN: (Paste the copied ARN)
+Click "Add Statement" -> "Generate Policy."
+Copy the generated policy, paste it into the Bucket Policy Editor, and:
+Add /* to the end of the Resource value.
+Click "Save."
+
+   
+
+5. Paste the following code (replace this with the actual CORS configuration if you have a specific one):
+[
+        {
+            "AllowedHeaders": [
+                "Authorization"
+            ],
+            "AllowedMethods": [
+                "GET"
+            ],
+            "AllowedOrigins": [
+                "*"
+            ],
+            "ExposeHeaders": []
+        }
+    ]
+
+6. Now we need to edit the access control list (ACL) section. Click edit and enable list for everyone(public access) and accept the warning box.
+
+#### **Creating AWS groups, policies and users**
+
+Simplified Instructions
+
+Access IAM and Create User Group
+
+On the AWS Console, click the "Services" icon (top right) and find "IAM".
+In the left menu, go to "User Groups" and click "Create Group."
+Name your group (e.g., "manage-cricketgearhub")
+Create an S3 Access Policy
+
+Click "Create Policy."
+Switch to the "JSON" tab and click "Import Managed Policy" (top right).
+Search for "AmazonS3FullAccess" and click "Import."
+Modify the Policy
+
+In the "Resources" section:
+Replace * with your bucket's ARN.
+On the next line, paste the ARN again and add /* at the end.
+Click "Next: Tags" -> "Next: Review."
+Name and Create the Policy
+
+Provide a name and description (e.g., "cricketgearhub-policy | Access to S3 bucket...").
+Click "Create Policy."
+Attach Policy to User Group
+
+Navigate to "User Groups" (left menu) and select your group.
+Go to the "Permissions" tab and click "Add Permissions" -> "Attach Policies."
+Select your newly created policy and click "Add Permissions."
+Create a User
+
+Go to "Users" (left menu) and click "Add Users."
+Create a username (e.g., "cricketgearhub-staticfiles-user").
+Select "Programmatic Access" and click "Next: Permissions."
+Add User to Group
+
+Add your user to the group you created.
+Click "Next: Tags" -> "Next: Review" -> "Create User."
+Retrieve Keys
+
+Immediately download the CSV with your user's access keys. This is your only chance to obtain them.
+
+Connecting Django to Your S3 Bucket
+
+1. Installation
+
+Install necessary packages and update your requirements file:
+
+Bash
+pip3 install boto3 django-storages
+pip3 freeze > requirements.txt
+Use code with caution.
+content_copy
+Add storages to INSTALLED_APPS in your settings.py file.
+
+2. Configure Django Settings (settings.py)
+
+Add this code, replacing placeholders with your actual values:
+
+Python
+if 'USE_AWS' in os.environ:
+    AWS_S3_OBJECT_PARAMETERS = {
+        'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
+        'CacheControl': 'max-age=9460800',
+    }
+    AWS_STORAGE_BUCKET_NAME = 'your-bucket-name'
+    AWS_S3_REGION_NAME = 'your-region'
+    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+Use code with caution.
+play_circleeditcontent_copy
+3. Set Heroku Config Vars
+
+Add these keys/values in Heroku's config vars section, using the values from your AWS CSV file:
+
+| KEY                      | VALUE                                              |
+| ------------------------ | -------------------------------------------------- |
+| AWS_ACCESS_KEY_ID        | Your access key from the CSV                       |
+| AWS_SECRET_ACCESS_KEY    | Your secret access key from the CSV                |
+| USE_AWS                  | True                                               |
+
+4. Setup Custom Storages
+
+Create custom_storages.py in your project root and add:
+
+Python
+from django.conf import settings
+from storages.backends.s3boto3 import S3Boto3Storage
+
+class StaticStorage(S3Boto3Storage):
+    location = 'static'
+
+class MediaStorage(S3Boto3Storage):
+    location = 'media'
+
+play_circleeditcontent_copy
+5. Update Django Settings (settings.py)
+
+Python
+STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage' 
+STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/static/'
+MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
+
+play_circleeditcontent_copy
+6. Deploy and Verify
+
+Commit and push your changes to Heroku.
+Verify static files were collected during deployment.
+Check your S3 bucket for the 'static' folder.
+7. Create S3 Media Folder
+
+Navigate to your S3 bucket.
+Create a new folder named 'media'.
+
+Setting up Stripe
+
+Obtain Stripe Keys
+
+Log into your Stripe account.
+Go to "Developers" -> "API Keys".
+Retrieve your publishable key and secret key.
+Add Keys to Heroku Config Vars
+
+In Heroku's settings, create two new config vars:
+STRIPE_PUBLIC_KEY (paste your publishable key)
+STRIPE_SECRET_KEY (paste your secret key)
+Set up Webhook
+
+In Stripe, go to "Developers" -> "Webhooks" -> "Add endpoint".
+Provide your deployed site's Webhook URL (e.g., https://your-site.herokuapp.com/webhook/)
+Add a description (e.g., "Webhook for my-site")
+Select "Receive all events".
+Click "Create endpoint".
+Retrieve the generated Webhook signing secret.
+Add Webhook Secret to Heroku
+
+Create a new Heroku config var:
+STRIPE_WH_SECRET (paste your Webhook signing secret)
+Update Django Settings (settings.py)
+
+Python
+import os
+
+STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
+STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET', '')
+Use code with caution.
+play_circleeditcontent_copy
+Important: Ensure you replace the placeholder Webhook URL (https://your-site.herokuapp.com/webhook/) with your actual deployed site's Webhook endpoint.
+
+
 
 ### Local Development
 
-#### How to Fork
+How to Fork the Project
 
-To fork the repository:
+Have a GitHub account: If you don't have one, sign up for free.
+Find the project: Go to https://github.com/Craig-Hudson/cricket-gear-hub.
+Click "Fork": You'll find this button in the top-right corner of the project page. This creates your own copy of the project.
+How to Clone the Project
 
-1. Log in (or sign up) to Github.
-
-2. Go to the repository for this project, [ReadersRealm](https://github.com/Craig-Hudson/online-book-review).
-
-3. Click the Fork button in the top right corner.
-
-#### How to Clone
-
-To clone the repository:
-
-1. Log in (or sign up) to GitHub.
-
-2. Go to the repository for this project, [ReadersRealm](https://github.com/Craig-Hudson/online-book-review).
-
-3. Click on the code button, select whether you would like to clone with HTTPS, SSH or GitHub CLI and copy the link shown.
-
-4. Open the terminal in your code editor and change the current working directory to the location you want to use for the cloned directory.
-
-5. Type the following command in the terminal (after the git clone you will need to paste the link you copied in step 3 above):
-
-    ```bash
-    git clone { & THE LINK FROM STEP 3 }
-    ```
-
-6. Set up a virtual environment (this step is not required if you are using the Code Institute Template in GitPod as this will already be set up for you).
-
-7. Install the packages from the requirements.txt file by running the following command in the Terminal:
-
-    ```bash
-    pip3 install -r requirements.txt
-    ```
-
-- - -
+Have a GitHub account: You'll need one if you don't already have it.
+Find the project: Go to https://github.com/Craig-Hudson/cricket-gear-hub.
+Copy the Clone Link:
+Click the "Code" button.
+Choose your preference (HTTPS, SSH, GitHub CLI) and copy the provided link.
+Open your Code Editor: Use the one you're comfortable with.
+Choose a Folder: Decide where you want to save the project on your computer.
+Use the 'git clone' Command:
+In your editor's terminal, type git clone and paste the copied link. Press Enter.
+Optional: Set up a Virtual Environment (Skip this if unsure or using a pre-made setup)
+Install Packages: In your terminal, run pip install -r requirements.txt
 ​
 
 ## Credits
@@ -473,7 +878,7 @@ To clone the repository:
 
 ### Code Used
 
-- Most of the code in this project was written my myself, references to w3schools and mdn web docs have been made with some of the code also, weather thats remembering a syntax, or re jogging my memory.
+- Some of the code in the project was used from the walkthrough project provivded my code institute this will be noted with comments in the code, and the remaining bits of code were written by myself.
 
 ### Content
 
