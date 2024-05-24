@@ -84,7 +84,7 @@
                         {% if user.is_authenticated %}
                             {% if user.is_superuser %}
                                 <a class="dropdown-item" href="{% url 'add_product' %}"><i class="fas fa-plus"></i> Product Management</a>
-                                <a class="dropdown-item" href="{% url 'add_staff_member' %}"><i class="fas fa-plus"></i> Management</a>
+                                <a class="dropdown-item" href="{% url 'add_staff_member' %}"><i class="fas fa-plus"></i> Staff Management</a>
                             {% endif %}
                             <a class="dropdown-item" href="{% url 'profile' %}"><i class="fas fa-user"></i> Profile</a>
                             <a class="dropdown-item" href="{% url 'account_logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
