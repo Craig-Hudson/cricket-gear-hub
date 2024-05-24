@@ -185,6 +185,9 @@
                 </div>
                 {% else %}
                 <p>No reviews for this product yet.</p>
+                    {% if not user.is_authenticated and not user.is_superuser %}
+                    <p>To add a review please <a href="{% url 'account_login' %}" class="text-dark font-weight-bold">login</a> here.</p>
+                    {% endif %}
                 {% endif %}
             </div>
         </div>
