@@ -74,6 +74,10 @@ The only HTML file with a warning now is on the checkout page as shown below.
 
 ![cart js validation](./readme_media/validation/cart_js_validation.png)
 
+-**Checkout js validation**
+
+![checkout js validation](./readme_media/validation/checkout_js_validation.png)
+
 ### Python Validator
 
 - Below is just one example of Python validation. All my other Python code is all PEP8 compliant.
@@ -201,3 +205,5 @@ Testing was done on the following devices and browsers
 | Feature  | Expected Outcome  | Testing Performed  | Result  | Pass/Fail  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
 | Latest products button | Take to all products page | Click button | I was taken to the all products page | Pass | 
+| Stripe payments(successful payments) | Card transaction to go through and be taken to checkout success page | Enter correct testing card number and process payment | Payment went through and I was taken to the checkout success page | Pass |
+| Stripe payments(unsuccessful payments) | Use unsuccessful card numbers provided by stripe | Test each card number | Error message pops up with unsuccessful purchase | Pass |  
