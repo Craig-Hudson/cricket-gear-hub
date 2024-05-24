@@ -57,7 +57,7 @@ def edit_staff_member(request, staff_member_id):
 
     template = 'staff_members/edit_staff_member.html'
 
-    return render(request, template, {'form': form})
+    return render(request, template, {'form': form, 'staff_member': staff_member})
 
 
 def delete_staff_member(request, staff_member_id):

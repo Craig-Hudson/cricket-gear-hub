@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 <div class="container">
@@ -27,7 +28,7 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="bioModalLabel{{ staff_member.id }}">{{ staff_member.first_name}} {{staff_member.last_name}}'s Bio</h5>
+                                    <h5 class="modal-title" id="bioModalLabel{{ staff_member.id }}">{{ staff_member.first_name }} {{ staff_member.last_name }}'s Bio</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -43,6 +44,36 @@
                     </div>
                     {% else %}
                     <p class="card-text">{{ staff_member.bio }}</p>
+                    {% endif %}
+                    <!-- Edit and Delete buttons for superusers -->
+                    {% if user.is_superuser %}
+                    <div class="d-flex justify-content-between mt-3">
+                        <a href="{% url 'edit_staff_member' staff_member.id %}" class="btn btn-dark text-white btn-sm">Edit</a>
+                        <!-- Delete Button with Modal -->
+                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal{{ staff_member.id }}">
+                            Delete
+                        </button>
+                    </div>
+                    <!-- Modal for Delete Confirmation -->
+                    <div class="modal fade" id="deleteModal{{ staff_member.id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel{{ staff_member.id }}" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="deleteModalLabel{{ staff_member.id }}">Confirm Deletion</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure you want to delete {{ staff_member.first_name }} {{ staff_member.last_name }}?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                    <a href="{% url 'delete_staff_member' staff_member.id %}" class="btn btn-danger">Delete</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     {% endif %}
                 </div>
             </div>
