@@ -10,7 +10,7 @@
             <form method="post" enctype="multipart/form-data" action="{% url 'edit_staff_member' staff_member.id %}">
                 {% csrf_token %}
                 {{ form|crispy }}
-                <button type="submit" class="btn btn-dark d-block mx-auto mb-4">Save Changes</button>
+                <button type="submit" class="btn btn-dark text-white d-block mx-auto mb-4">Save Changes</button>
             </form>
         </div>
     </div>
