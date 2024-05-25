@@ -10,10 +10,10 @@
         {% for staff_member in staff_members %}
         <div class="col-6 col-md-4 col-lg-3 mb-4">
             <div class="card">
-                {% if staff_members.profile_picture %}
-                <img src="{{ staff_member.profile_picture.url }}" class="img-fluid card-img-top rounded" alt="{{ staff_member.name }}">
+                {% if staff_member.profile_picture %}
+                <img src="{{ staff_member.profile_picture.url }}" class="img-fluid card-img-top border-radius" alt="{{ staff_member.name }}">
                 {% else %}
-                <img src="{% static 'images/no-image-icon-23489.webp' %}" class="img-fluid card-img-top rounded" alt="no image available">
+                <img src="{% static 'images/no-image-icon-23489.webp' %}" class="img-fluid card-img-top border-radius" alt="no image available">
                 {% endif %}
                 <div class="card-body">
                     <h5 class="card-title">{{ staff_member.first_name }} {{ staff_member.last_name }}</h5>
