@@ -878,7 +878,7 @@ Install Packages: In your terminal, run pip install -r requirements.txt
 
 ### Code Used
 
-- Some of the code in the project was used from the walkthrough project provivded my code institute this will be noted with comments in the code, and the remaining bits of code were written by myself.
+- Some of the code in the project was used from the walkthrough project provided by code institute this will be noted with comments in the code, and the remaining bits of code were written by myself.
 
 ### Content
 
